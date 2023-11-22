@@ -1,4 +1,4 @@
-export const API_URL = "/api/v1/";
-export const LOGIN_ENDPOINT = "user/login/"
-export const REGISTER_ENDPOINT = "user/signup/"
+export const API_URL = "https://8000-coachhallso-fastapiauth-ncq61p1ghmk.ws-us106.gitpod.io/api/v1/";
+export const LOGIN_ENDPOINT = "login/access-token"
+export const REGISTER_ENDPOINT = "users/open/"
 export const REFRESH_ENDPOINT = "token/refresh/"

@@ -2,7 +2,7 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import { useGlobalState } from '../../context/GlobalState';
 import authService from '../../services/auth.service';
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
 import styles from './login.module.css';
 import Link from 'next/link';
 //------------------------------------------------------------------------------------------------------------------------------
@@ -11,25 +11,39 @@ function LoginPage() {
     const { state, dispatch } = useGlobalState();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
 //------------------------------------------------------------------------------------------------------------------------------
     const handleLogin = (e) => {
         e.preventDefault();
         const username = email;
         authService
-            .login(email, password, username)
+            .login(username, password)
             .then(async (resp) => {
-                console.log(resp);
-                if (resp.access) {
-                    let data = jwtDecode(resp.access);
-                    await dispatch({
-                        type: 'SET_USER',
-                        payload: data,
-                    });
-                    router.push('/');
-                } else {
-                    console.log('Login failed');
-                    dispatch({ type: 'LOGOUT_USER' });
+                if(resp != undefined){
+                    if (resp.access_token) {
+                        //let data = jwtDecode(resp.access_token);
+                        let data = jwtDecode(resp.access_token, { header: true });
+                        await dispatch({
+                            type: 'SET_USER',
+                            payload: data,
+                        });
+                        console.log('Login success');
+                        router.push('/');
+                    } else {
+                        console.log('Login failed');
+                        dispatch({ type: 'LOGOUT_USER' });
+                    }
                 }
+            })
+            .catch((error) => {
+                // Handle the error here
+                console.error('An error occurred:', error);
+                // Optionally, dispatch a logout or error action
+                dispatch({ type: 'LOGOUT_USER' });
+            })
+            .finally(() => {
+                // Code to run regardless of success or failure
+                console.log('Login request completed');
             });
     };
 //------------------------------------------------------------------------------------------------------------------------------

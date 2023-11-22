@@ -2,6 +2,7 @@ import {
     LOGIN_ENDPOINT,
     REFRESH_ENDPOINT,
     REGISTER_ENDPOINT,
+    API_URL
   } from './auth.constants';
   
   import request from './api.request';
@@ -11,19 +12,19 @@ import {
       this.login = this.login.bind(this);
     }
   
-    async login(email, password, username) {
+    async login(username, password) {
+      const data = {username:username, password:password};
       try {
         const response = await request({
-          url: LOGIN_ENDPOINT,
+          url: API_URL + LOGIN_ENDPOINT,
           method: 'POST',
-          data: {
-            email,
-            password,
-            username,
-          },
+          data:{
+            "username": username,
+            "password": password
+          }
         });
   
-        if (response.data.access) {
+        if (response.data.access_token) {
           return this.setToken(response);
         }
       } catch (error) {
@@ -39,25 +40,20 @@ import {
       username,
       email,
       password,
-      firstName,
-      lastName,
-      image
     }) {
       try {
-        await request({
-          url: REGISTER_ENDPOINT,
+        let req = await request({
+          url: API_URL + REGISTER_ENDPOINT,
           method: 'POST',
-          data: {
-            username,
-            email,
-            password,
-            first_name: firstName,
-            last_name: lastName,
-            image
-          },
+          data:{
+            "username": username,
+            "password": password,
+            "email": email
+          }
         });
-  
-        await this.login(email, password, username);
+        if(req){
+          await this.login(username,password);
+        }
       } catch (error) {
         return error.response;
       }

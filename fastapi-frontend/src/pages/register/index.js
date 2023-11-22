@@ -2,8 +2,9 @@ import React, { useEffect, useState,} from "react";
 import AuthService from "../../services/auth.service";
 import { useRouter } from "next/navigation";
 import { useGlobalState } from "../../context/GlobalState";
-import styles from '../../styles/global.module.css';
+import styles from './register.module.css';
 import jwtDecode from 'jwt-decode';
+import Link from 'next/link';
 //------------------------------------------------------------------------------------------------------------------------------
 function RegisterPage() {
   const {state, dispatch} = useGlobalState();
@@ -11,8 +12,6 @@ function RegisterPage() {
   const [user, setUser] = useState({
     password: "",
     passwordConf: "",
-    firstName: "",
-    lastName: "",
     email: "",
     username: "",
   });
@@ -29,7 +28,7 @@ function RegisterPage() {
     try {
       await AuthService.register(user);
       
-      const loginResp = await AuthService.login(user.email, user.password, user.username);
+      const loginResp = await AuthService.login(user.username, user.password);
   
       if (loginResp.access) {
         const data = jwtDecode(loginResp.access);
@@ -48,31 +47,12 @@ function RegisterPage() {
   }
 //------------------------------------------------------------------------------------------------------------------------------
   return (
-    <div className="w-screen h-screen">
+    <div>
       <div className={styles.container}>
         <h1>Register</h1>
       <div className="flex">
         <form className="mx-auto border-2 bg-mtgray" onSubmit={handleRegister}>
-          <div className="flex justify-between m-2 items-center space-x-2">
-            <label htmlFor="firstName">First Name:</label><br></br>
-            <input
-              className="border"
-              type="text"
-              id="firstName"
-              required
-              onChange={(e) => handleChange("firstName", e.target.value)}
-            />
-          </div>
-          <div className="flex justify-between m-2 items-center space-x-2">
-            <label htmlFor="lastName">Last Name:</label><br></br>
-            <input
-              className="border"
-              type="text"
-              id="lastName"
-              required
-              onChange={(e) => handleChange("lastName", e.target.value)}
-            />
-          </div>
+          
           <div className="flex justify-between m-2 items-center space-x-2">
             <label htmlFor="email">Email:</label><br></br>
             <input
@@ -117,8 +97,6 @@ function RegisterPage() {
                 user.password &&
                 user.password.length >= 8 &&
                 user.password === user.passwordConf &&
-                user.firstName &&
-                user.lastName &&
                 user.email
                   ? false
                   : true
@@ -126,6 +104,9 @@ function RegisterPage() {
             />
           </div>
         </form>
+        <Link href="/login" className={styles.link}>
+            Login Here
+        </Link>
       </div>
     </div>
     </div>
