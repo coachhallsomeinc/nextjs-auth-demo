@@ -3,7 +3,7 @@ import AuthService from "../../services/auth.service";
 import { useRouter } from "next/navigation";
 import { useGlobalState } from "../../context/GlobalState";
 import styles from './register.module.css';
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
 import Link from 'next/link';
 //------------------------------------------------------------------------------------------------------------------------------
 function RegisterPage() {
@@ -26,21 +26,22 @@ function RegisterPage() {
   async function handleRegister(e) {
     e.preventDefault();
     try {
-      await AuthService.register(user);
+      const resp = await AuthService.register(user);
       
-      const loginResp = await AuthService.login(user.username, user.password);
-  
-      if (loginResp.access) {
-        const data = jwtDecode(loginResp.access);
+      if (resp.data.access_token) {
+        //let data = jwtDecode(resp.access_token);
+        let data = jwtDecode(resp.data.access_token, { header: true });
         await dispatch({
-          type: 'SET_USER',
-          payload: data,
+            type: 'SET_USER',
+            payload: data,
         });
+        console.log('Login success');
         router.push('/');
       } else {
-        console.log('Login after registration failed');
-        dispatch({ type: 'LOGOUT_USER' });
+          console.log('Login failed');
+          dispatch({ type: 'LOGOUT_USER' });
       }
+  
     } catch (error) {
       console.error('Registration failed:', error);
     }

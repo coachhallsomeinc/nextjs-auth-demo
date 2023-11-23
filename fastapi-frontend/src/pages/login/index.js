@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import { useGlobalState } from '../../context/GlobalState';
-import authService from '../../services/auth.service';
+import AuthService from '../../services/auth.service';
 import { jwtDecode } from "jwt-decode";
 import styles from './login.module.css';
 import Link from 'next/link';
@@ -11,12 +11,11 @@ function LoginPage() {
     const { state, dispatch } = useGlobalState();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
 //------------------------------------------------------------------------------------------------------------------------------
     const handleLogin = (e) => {
         e.preventDefault();
         const username = email;
-        authService
+        AuthService
             .login(username, password)
             .then(async (resp) => {
                 if(resp != undefined){

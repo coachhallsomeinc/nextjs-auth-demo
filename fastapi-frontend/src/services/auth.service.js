@@ -51,9 +51,7 @@ import {
             "email": email
           }
         });
-        if(req){
-          await this.login(username,password);
-        }
+        return req;
       } catch (error) {
         return error.response;
       }
