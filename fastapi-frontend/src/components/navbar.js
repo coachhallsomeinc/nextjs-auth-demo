@@ -37,17 +37,17 @@ export default function Navbar() {
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
-                  <a class="nav-link" aria-current="page" href="#">
+                  <a class="nav-link" aria-current="page" href="/about">
                     About Us
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">
+                  <a class="nav-link" href="/additional-resources">
                     Additional Resources
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">
+                  <a class="nav-link" href="../">
                     Login
                   </a>
                 </li>

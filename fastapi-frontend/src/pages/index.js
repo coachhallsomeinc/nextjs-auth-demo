@@ -1,14 +1,14 @@
-'use client'
+"use client"
 import React, { useState, useEffect } from 'react'
 import { useGlobalState } from '../context/GlobalState';
 import { useRouter } from 'next/navigation';
 import authService from '../services/auth.service';
 import { jwtDecode } from "jwt-decode";
 import styles from '../styles/home.module.css';
-import Link from 'next/link';
 import Navbar from '@/components/navbar';
 import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
+// import 'bootstrap/dist/js/bootstrap.min.js';
+
 
 export default function Home() {
 
@@ -80,7 +80,7 @@ export default function Home() {
         </div>
       </div>
     </div>
-      <main className={`${styles.main}`}>
+      {/* <main className={`${styles.main}`}>
         <div className={styles.grid}>
           {state.user ? (
               <li className="nav-item">
@@ -92,7 +92,7 @@ export default function Home() {
               </li>
             )}
         </div>
-      </main>
+      </main> */}
   </>
   )
 }
