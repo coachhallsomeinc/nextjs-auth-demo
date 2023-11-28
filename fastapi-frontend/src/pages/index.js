@@ -4,10 +4,10 @@ import { useGlobalState } from '../context/GlobalState';
 import { useRouter } from 'next/navigation';
 import authService from '../services/auth.service';
 import { jwtDecode } from "jwt-decode";
+import Link from 'next/link';
 import styles from '../styles/home.module.css';
 import Navbar from '@/components/navbar';
 import 'bootstrap/dist/css/bootstrap.css';
-// import 'bootstrap/dist/js/bootstrap.min.js';
 
 
 export default function Home() {
@@ -40,8 +40,9 @@ export default function Home() {
     <div className="container mt-5">
         <div className='row'>
           <Navbar />
+        </div>
         <div className="row mt-5">
-            <div className="col-md-6 border rounded-5 shadow">
+            <div className="col-md-6 text-center border rounded-5 shadow">
                 <h1>Tiny Trackers</h1>
                 <p>Need help keeping track of medications and logging symptoms for your children? Look no further than TinyTrackers!</p>
             </div>
@@ -78,9 +79,8 @@ export default function Home() {
               </div>
             </div>
         </div>
-      </div>
     </div>
-      {/* <main className={`${styles.main}`}>
+      <main className={`${styles.main}`}>
         <div className={styles.grid}>
           {state.user ? (
               <li className="nav-item">
@@ -92,7 +92,7 @@ export default function Home() {
               </li>
             )}
         </div>
-      </main> */}
+      </main>
   </>
   )
 }
