@@ -45,7 +45,7 @@ export default function Home() {
       </div>
       <div className="row mt-5">
           <div className="col-md-6 text-center border rounded-5 shadow">
-              <Image className='mt-4' src="/img/Asset-2.svg" width={250} height={65}/>
+              <Image className='mt-4' src="/img/Asset-2.svg" width={300} height={85}/>
               <p className='mt-4'>Need help keeping track of medications and logging symptoms for your children? Look no further than TinyTrackers!</p>
           </div>
           <div className='col-md-6'>
