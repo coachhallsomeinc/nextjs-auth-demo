@@ -9,7 +9,7 @@ function additionalResources() {
           <div className='row'>
             <Navbar />
           </div>
-          <div className='row'>
+          <div className='row mt-5'>
             <div className='col-6 ms-4'>
               <h1 className='mt-5'>Additional Resources</h1>
               <ul>

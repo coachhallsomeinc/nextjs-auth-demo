@@ -11,7 +11,7 @@ function about_us() {
       <div className='row'>
         <Navbar />
       </div>
-      <div className='row'>
+      <div className='row mt-5'>
         <div className='col-6'>
           <h1>About Us</h1>
           <p>Blah blah blah about us stuff here</p>

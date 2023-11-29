@@ -8,6 +8,7 @@ import Link from 'next/link';
 import styles from '../styles/home.module.css';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/Footer';
+import Image from 'next/image';
 import 'bootstrap/dist/css/bootstrap.css';
 
 
@@ -44,8 +45,8 @@ export default function Home() {
       </div>
       <div className="row mt-5">
           <div className="col-md-6 text-center border rounded-5 shadow">
-              <h1>Tiny Trackers</h1>
-              <p>Need help keeping track of medications and logging symptoms for your children? Look no further than TinyTrackers!</p>
+              <Image className='mt-4' src="/img/Asset-2.svg" width={250} height={65}/>
+              <p className='mt-4'>Need help keeping track of medications and logging symptoms for your children? Look no further than TinyTrackers!</p>
           </div>
           <div className='col-md-6'>
             {/* log in container */}
