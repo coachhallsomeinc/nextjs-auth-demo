@@ -1,13 +1,16 @@
 import React from 'react'
 import Navbar from '@/components/navbar';
 import Image from 'next/image';
+import Footer from '@/components/Footer';
 
 function about_us() {
 
   return (
     <>
-    <Navbar />
     <div className='container mt-5'>
+      <div className='row'>
+        <Navbar />
+      </div>
       <div className='row'>
         <div className='col-6'>
           <h1>About Us</h1>
@@ -18,6 +21,7 @@ function about_us() {
         </div>
       </div>
     </div>
+    <Footer />
     </>
   )
 }

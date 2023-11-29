@@ -1,11 +1,14 @@
 import Navbar from '@/components/navbar'
 import React from 'react'
+import Footer from '@/components/Footer'
 
 function additionalResources() {
   return (
     <>
-        <Navbar/>
         <div className='conatiner'>
+          <div className='row'>
+            <Navbar />
+          </div>
           <div className='row'>
             <div className='col-6 ms-4'>
               <h1 className='mt-5'>Additional Resources</h1>
@@ -22,7 +25,7 @@ function additionalResources() {
             </div>
           </div>
         </div>
-        
+      <Footer />  
     </>
   )
 }
