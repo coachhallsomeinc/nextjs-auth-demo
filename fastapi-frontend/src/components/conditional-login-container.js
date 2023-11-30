@@ -22,8 +22,6 @@ const ConditionalLoginContainer = () => {
     setView('forgotPassword');
   };
 
-  // code from justins login button which takes you to the login screen he built
-
   const { state, dispatch } = useGlobalState();
 
   useEffect(() => {
@@ -45,6 +43,7 @@ const ConditionalLoginContainer = () => {
     AuthService.logout();
     dispatch({ type: 'LOGOUT_USER' });
     router.push('/');
+    console.log('Logged out')
   };
 
   // code from justins login screen
@@ -127,6 +126,16 @@ const ConditionalLoginContainer = () => {
                   </a>
                 </div>
                 <div className='login-button'>
+                  {state.user ? (
+                  <button
+                    className='btn btn-lg btn-primary w-30 fs-6'
+                    type = "submit"
+                    onClick={handleLogout}
+                    // onClick={showLogin}
+                  >
+                    Log Out
+                  </button>  
+                  ) : (
                   <button
                     className='btn btn-lg btn-primary w-30 fs-6'
                     type = "submit"
@@ -135,6 +144,7 @@ const ConditionalLoginContainer = () => {
                   >
                     Log In
                   </button>
+                  )}
                 </div>
               </div>
             )}
