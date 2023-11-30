@@ -18,6 +18,7 @@ function LoginPage() {
         AuthService
             .login(username, password)
             .then(async (resp) => {
+                console.log(resp)
                 if(resp != undefined){
                     if (resp.access_token) {
                         //let data = jwtDecode(resp.access_token);

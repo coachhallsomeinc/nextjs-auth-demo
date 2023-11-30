@@ -16,28 +16,28 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 export default function Home() {
 
-  // const { state, dispatch } = useGlobalState();
+  const { state, dispatch } = useGlobalState();
 
-  // useEffect(() => {
-  //   const getUserFromLocalStorage = () => {
-  //     const userData = localStorage.getItem('user');
-  //     if (userData) {
-  //       const user = jwtDecode(userData);
-  //       console.log('User data:', user);
-  //       dispatch({
-  //         type: 'SET_USER',
-  //         payload: user
-  //       });
-  //     }
-  //   };
-  //   getUserFromLocalStorage();
-  // }, []);
+  useEffect(() => {
+    const getUserFromLocalStorage = () => {
+      const userData = localStorage.getItem('user');
+      if (userData) {
+        const user = jwtDecode(userData);
+        console.log('User data:', user);
+        dispatch({
+          type: 'SET_USER',
+          payload: user
+        });
+      }
+    };
+    getUserFromLocalStorage();
+  }, []);
 
-  // const handleLogout = () => {
-  //   authService.logout();
-  //   dispatch({ type: 'LOGOUT_USER' });
-  //   router.push('/');
-  // };
+  const handleLogout = () => {
+    authService.logout();
+    dispatch({ type: 'LOGOUT_USER' });
+    router.push('/');
+  };
 
   return (
   <>

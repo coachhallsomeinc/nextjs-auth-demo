@@ -23,7 +23,7 @@ import {
             "password": password
           }
         });
-  
+        
         if (response.data.access_token) {
           return this.setToken(response);
         }
