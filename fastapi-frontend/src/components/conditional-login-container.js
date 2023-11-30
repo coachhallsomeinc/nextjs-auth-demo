@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useGlobalState } from '../context/GlobalState';
 import { useRouter } from 'next/navigation';
-import authService from '../services/auth.service';
+import AuthService from '../services/auth.service';
 import { jwtDecode } from "jwt-decode";
 import Link from 'next/link';
 import styles from '../styles/home.module.css';
@@ -99,7 +99,7 @@ const ConditionalLoginContainer = () => {
               {view === 'signup' && <p>Create a New Account</p>}
               {view === 'forgotPassword' && <p>Forgot Password?</p>}
             </div>
-            <form onSubmit={handleLogin}>
+            <form>
               <div className='input-group mb-3'>
                 <input
                   type='text'
@@ -130,6 +130,7 @@ const ConditionalLoginContainer = () => {
                   <button
                     className='btn btn-lg btn-primary w-30 fs-6'
                     type = "submit"
+                    onClick={handleLogin}
                     // onClick={showLogin}
                   >
                     Log In
