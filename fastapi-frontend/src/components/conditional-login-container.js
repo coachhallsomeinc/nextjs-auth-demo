@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import AuthService from '../services/auth.service';
 import { jwtDecode } from "jwt-decode";
 import Link from 'next/link';
-import styles from '../styles/home.module.css';
 
 const ConditionalLoginContainer = () => {
   const [view, setView] = useState('login');
@@ -93,12 +92,17 @@ const ConditionalLoginContainer = () => {
         <div className='col-md-12 box'>
           <div className='row align-items-center'>
             <div className='header-text mb-4'>
-              <p>Hello!</p>
-              {view === 'login' && <p>Welcome to TinyTrackers!</p>}
-              {view === 'signup' && <p>Create a New Account</p>}
-              {view === 'forgotPassword' && <p>Forgot Password?</p>}
+              {view === 'login' && <p className='mt-2'>Hello</p>}
+              {view === 'signup' && <></>}
+              {view === 'forgotPassword' && <></>}
+              {view === 'login' && <p className='mt-2'>Welcome to TinyTrackers!</p>}
+              {view === 'signup' && <p className='mt-2'>Create a New Account</p>}
+              {view === 'forgotPassword' && <p className='mt-2'>Forgot Password?</p>}
             </div>
-            <form>
+            </div>
+            </div>
+            {view === 'login' && (
+              <><form>
               <div className='input-group mb-3'>
                 <input
                   type='text'
@@ -118,41 +122,34 @@ const ConditionalLoginContainer = () => {
                 />
               </div>
             </form>
-            {view === 'login' && (
               <div className='input-group mb-3 d-flex justify-content-between'>
                 <div className='forgot mt-2 fs-6'>
                   <a href='#' onClick={showForgotPassword}>
                     Forgot Password?
                   </a>
                 </div>
+                {/* login logout button */}
                 <div className='login-button'>
                   {state.user ? (
-                  <button
-                    className='btn btn-lg btn-primary w-30 fs-6'
-                    type = "submit"
-                    onClick={handleLogout}
-                    // onClick={showLogin}
-                  >
+                  <button className='btn btn-lg btn-primary w-30 fs-6' type = "submit" onClick={handleLogout}>
                     Log Out
                   </button>  
                   ) : (
-                  <button
-                    className='btn btn-lg btn-primary w-30 fs-6'
-                    type = "submit"
-                    onClick={handleLogin}
-                    // onClick={showLogin}
-                  >
+                  <button className='btn btn-lg btn-primary w-30 fs-6' type = "submit" onClick={handleLogin}>
                     Log In
                   </button>
                   )}
                 </div>
-              </div>
+              </div></>
             )}
             {view === 'signup' && (
-              <div className='input-group mb-3 d-flex justify-content-between'>
-                {/* Additional registration fields go here */}
+              <div className='mb-3'>
+                <input type='text' className='mt-2 form-control form control-lg bg-light fs-6' placeholder='Enter Name' />
+                <input type='text' className='mt-2 form-control form control-lg bg-light fs-6' placeholder='Enter Email' />
+                <input type='text' className='mt-2 form-control form control-lg bg-light fs-6' placeholder='Enter New Password' />
+                <input type='text' className='mt-2 form-control form control-lg bg-light fs-6' placeholder='Confirm New Password' />
                 <button
-                  className='btn btn-lg btn-primary w-30 fs-6'
+                  className='mt-2 btn btn-lg btn-primary w-30 fs-6'
                   onClick={showSignup}
                 >
                   Sign Up
@@ -160,10 +157,13 @@ const ConditionalLoginContainer = () => {
               </div>
             )}
             {view === 'forgotPassword' && (
-              <div className='input-group mb-3 d-flex justify-content-between'>
-                {/* Fields for security questions and answers go here */}
+              <div className='mb-3'>
+                <p>Security question 1</p>
+                <input type='text' className='mt-2 form-control form control-lg bg-light fs-6' placeholder='Your Answer' />
+                <p className='mt-3'>Securtiy question 2</p>
+                <input type='text' className='mt-2 form-control form control-lg bg-light fs-6' placeholder='Your Answer' />
                 <button
-                  className='btn btn-lg btn-primary w-30 fs-6'
+                  className='mt-3 btn btn-lg btn-primary w-30 fs-6'
                   onClick={showLogin}
                 >
                   Submit
@@ -179,27 +179,8 @@ const ConditionalLoginContainer = () => {
                   {view === 'login' ? 'Sign up' : 'Log in'}
                 </a>
               </small>
-            </div>
-          </div>
-        </div>
+            </div>        
       </div>
-    </div>
-    <div>
-
-      {/* justins login */}
-      {/* <main className={`${styles.main}`}>
-        <div className={styles.grid}>
-          {state.user ? (
-              <li className="nav-item">
-                <Link href="/" className={styles.logout} onClick={handleLogout}>Logout</Link>
-              </li>
-            ) : (
-              <li className="nav-item">
-                <Link href="/login">Login</Link>
-              </li>
-            )}
-        </div>
-      </main> */}
     </div>
     </>
   );
