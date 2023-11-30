@@ -50,40 +50,79 @@ const ConditionalLoginContainer = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  //------------------------------------------------------------------------------------------------------------------------------
+  const handleLogin = (e) => {
+      e.preventDefault();
+      const username = email;
+      AuthService
+          .login(username, password)
+          .then(async (resp) => {
+              if(resp != undefined){
+                  if (resp.access_token) {
+                      //let data = jwtDecode(resp.access_token);
+                      let data = jwtDecode(resp.access_token, { header: true });
+                      await dispatch({
+                          type: 'SET_USER',
+                          payload: data,
+                      });
+                      console.log('Login success');
+                      router.push('/');
+                  } else {
+                      console.log('Login failed');
+                      dispatch({ type: 'LOGOUT_USER' });
+                  }
+              }
+          })
+          .catch((error) => {
+              // Handle the error here
+              console.error('An error occurred:', error);
+              // Optionally, dispatch a logout or error action
+              dispatch({ type: 'LOGOUT_USER' });
+          })
+          .finally(() => {
+              // Code to run regardless of success or failure
+              console.log('Login request completed');
+          });
+        }
+
+  // code from justins registration page
+  const [user, setUser] = useState({
+    password: "",
+    passwordConf: "",
+    email: "",
+    username: "",
+  });
 //------------------------------------------------------------------------------------------------------------------------------
-    const handleLogin = (e) => {
-        e.preventDefault();
-        const username = email;
-        AuthService
-            .login(username, password)
-            .then(async (resp) => {
-                if(resp != undefined){
-                    if (resp.access_token) {
-                        //let data = jwtDecode(resp.access_token);
-                        let data = jwtDecode(resp.access_token, { header: true });
-                        await dispatch({
-                            type: 'SET_USER',
-                            payload: data,
-                        });
-                        console.log('Login success');
-                        router.push('/');
-                    } else {
-                        console.log('Login failed');
-                        dispatch({ type: 'LOGOUT_USER' });
-                    }
-                }
-            })
-            .catch((error) => {
-                // Handle the error here
-                console.error('An error occurred:', error);
-                // Optionally, dispatch a logout or error action
-                dispatch({ type: 'LOGOUT_USER' });
-            })
-            .finally(() => {
-                // Code to run regardless of success or failure
-                console.log('Login request completed');
-            });
-          }
+  const handleChange = (key, value) => {
+    setUser({
+      ...user,
+      [key]: value,
+    });
+  };
+//------------------------------------------------------------------------------------------------------------------------------
+  async function handleRegister(e) {
+    e.preventDefault();
+    try {
+      const resp = await AuthService.register(user);
+      
+      if (resp.data.access_token) {
+        //let data = jwtDecode(resp.access_token);
+        let data = jwtDecode(resp.data.access_token, { header: true });
+        await dispatch({
+            type: 'SET_USER',
+            payload: data,
+        });
+        console.log('Login success');
+        router.push('/');
+      } else {
+          console.log('Login failed');
+          dispatch({ type: 'LOGOUT_USER' });
+      }
+  
+    } catch (error) {
+      console.error('Registration failed:', error);
+    }
+  }
 
   return (
     <>
@@ -143,19 +182,48 @@ const ConditionalLoginContainer = () => {
               </div></>
             )}
             {view === 'signup' && (
+              <>
+              <form>
               <div className='mb-3'>
-                <input type='text' className='mt-2 form-control form control-lg bg-light fs-6' placeholder='Enter Your Name' />
-                <input type='text' className='mt-2 form-control form control-lg bg-light fs-6' placeholder='Enter Email Address' />
-                <input type='text' className='mt-2 form-control form control-lg bg-light fs-6' placeholder='Confirm Email Address' />
-                <input type='text' className='mt-2 form-control form control-lg bg-light fs-6' placeholder='Enter New Password' />
-                <input type='text' className='mt-2 form-control form control-lg bg-light fs-6' placeholder='Confirm New Password' />
+                <input 
+                    required 
+                    type='text' 
+                    className='mt-2 form-control form control-lg bg-light fs-6' 
+                    placeholder='Enter Your Name' />
+                <input 
+                    required 
+                    onChange={(e) => {
+                      let olduser = user;
+                      olduser.email = e.target.value;
+                      olduser.username = e.target.value;
+                      setUser(olduser);
+                    }} 
+                    type='text' 
+                    className='mt-2 form-control form control-lg bg-light fs-6' 
+                    placeholder='Enter Email Address' />
+                <input 
+                    required 
+                    type='password'
+                    id='password'
+                    onChange={(e) => handleChange("password", e.target.value)} 
+                    className='mt-2 form-control form control-lg bg-light fs-6' 
+                    placeholder='Enter New Password' />
+                <input 
+                    required 
+                    type='password'
+                    id='passwordConf'
+                    onChange={(e) => handleChange("passwordConf", e.target.value)} 
+                    className='mt-2 form-control form control-lg bg-light fs-6' 
+                    placeholder='Confirm New Password' />
                 <button
                   className='mt-2 btn btn-lg btn-primary w-30 fs-6'
-                  onClick={showSignup}
+                  onClick={handleRegister}
                 >
                   Sign Up
                 </button>
               </div>
+              </form>
+              </>
             )}
             {view === 'forgotPassword' && (
               <div className='mb-3'>

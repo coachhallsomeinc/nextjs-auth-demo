@@ -56,7 +56,7 @@ export default function Home() {
           </div>
       </div>
     </div>
-    {/* <main className={`${styles.main}`}>
+    <main className={`${styles.main}`}>
         <div className={styles.grid}>
           {state.user ? (
               <li className="nav-item">
@@ -68,7 +68,7 @@ export default function Home() {
               </li>
             )}
         </div>
-      </main> */}
+      </main>
     <Footer />
   </>
   )
