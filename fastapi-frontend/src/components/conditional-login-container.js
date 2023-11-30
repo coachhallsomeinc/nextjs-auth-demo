@@ -42,7 +42,7 @@ const ConditionalLoginContainer = () => {
   }, []);
 
   const handleLogout = () => {
-    authService.logout();
+    AuthService.logout();
     dispatch({ type: 'LOGOUT_USER' });
     router.push('/');
   };
@@ -177,7 +177,7 @@ const ConditionalLoginContainer = () => {
     <div>
 
       {/* justins login */}
-      <main className={`${styles.main}`}>
+      {/* <main className={`${styles.main}`}>
         <div className={styles.grid}>
           {state.user ? (
               <li className="nav-item">
@@ -189,7 +189,7 @@ const ConditionalLoginContainer = () => {
               </li>
             )}
         </div>
-      </main>
+      </main> */}
     </div>
     </>
   );
