@@ -144,8 +144,9 @@ const ConditionalLoginContainer = () => {
             )}
             {view === 'signup' && (
               <div className='mb-3'>
-                <input type='text' className='mt-2 form-control form control-lg bg-light fs-6' placeholder='Enter Name' />
-                <input type='text' className='mt-2 form-control form control-lg bg-light fs-6' placeholder='Enter Email' />
+                <input type='text' className='mt-2 form-control form control-lg bg-light fs-6' placeholder='Enter Your Name' />
+                <input type='text' className='mt-2 form-control form control-lg bg-light fs-6' placeholder='Enter Email Address' />
+                <input type='text' className='mt-2 form-control form control-lg bg-light fs-6' placeholder='Confirm Email Address' />
                 <input type='text' className='mt-2 form-control form control-lg bg-light fs-6' placeholder='Enter New Password' />
                 <input type='text' className='mt-2 form-control form control-lg bg-light fs-6' placeholder='Confirm New Password' />
                 <button
