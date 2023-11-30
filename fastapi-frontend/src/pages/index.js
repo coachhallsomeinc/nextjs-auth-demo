@@ -8,6 +8,8 @@ import Link from 'next/link';
 import styles from '../styles/home.module.css';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/Footer';
+import Logincontainer from '@/components/login-container';
+import ConditionalLoginContainer from '@/components/conditional-login-container';
 import Image from 'next/image';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -45,40 +47,13 @@ export default function Home() {
       </div>
       <div className="row mt-5">
           <div className="col-md-6 text-center border rounded-5 shadow">
-              <Image className='mt-4' src="/img/Asset-2.svg" width={300} height={85}/>
-              <p className='mt-4'>Need help keeping track of medications and logging symptoms for your children? Look no further than TinyTrackers!</p>
+              <Image className='mt-4' src="/img/Asset-2.svg" width={300} height={150}/>
+              <p className='mt-5'>Need help keeping track of medications and logging symptoms for your children? Look no further than TinyTrackers!</p>
           </div>
           <div className='col-md-6'>
             {/* log in container */}
-            <div className='container d-flex justify-content-center min-vh-50'> 
-              <div className='row border rounded-5 p-3 bg-white shadow box-area'>
-                <div className='col-md-12 box'>
-                  <div className='row align-items-center'>
-                    <div className='header-text mb-4'>
-                      <p>Hello!</p>
-                      <p>Welcome to TinyTrackers!</p>
-                    </div>
-                    <div className='input-group mb-3'>
-                      <input type="text" className='form-control form control-lg bg-light fs-6' placeholder='Email Address'></input>
-                    </div>
-                    <div className='input-group mb-1'>
-                      <input type="password" className='form-control form control-lg bg-light fs-6' placeholder='Password'></input>
-                    </div>
-                    <div className='input-group mb-3 d-flex justify-content-between'>
-                      <div className='forgot mt-2 fs-6'>
-                        <a href='#'>Forgot Password?</a>
-                      </div>
-                      <div className='login-button'>
-                        <button className='btn btn-lg btn-primary w-30 fs-6'>Log In</button>
-                      </div>
-                    </div>
-                    <div className='row mb-3'>
-                      <small>Don't have account? <a href='#'>Sign up</a></small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+              {/* <Logincontainer /> */}
+              <ConditionalLoginContainer />
           </div>
       </div>
     </div>
@@ -93,8 +68,8 @@ export default function Home() {
                 <Link href="/login">Login</Link>
               </li>
             )}
-        </div>
-      </main> */}
+        </div> */}
+      {/* </main> */}
       <Footer />
   </>
   )
