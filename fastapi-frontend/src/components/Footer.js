@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import '../styles/global.module.css'
 
 function Footer() {
   return (
@@ -15,17 +16,17 @@ function Footer() {
             <p className="mb-0">Built by Tanner McDaniel</p>
           </div>
           <div className='col-1'>
-            <div>
+            <div className='icon-blue'>
                 <a href="mailto:tmmcdaniel909@gmail.com"><Image src="/img/envelope-solid.svg" width={25} height={25} /></a>
             </div>
           </div>
           <div className='col-1'>
-            <div>
+            <div className='icon-blue'>
                 <a target="_blank" href="https://www.linkedin.com/feed/?trk=homepage-basic_sign-in-submit"><Image src="/img/linkedin.svg" width={25} height={25} /></a>
             </div>
           </div>
           <div className='col-1'>
-            <div>
+            <div className="icon-blue">
                 <a target="_blank" href="https://github.com/Tanner90909"><Image src="/img/square-github.svg" width={25} height={25} /></a>
             </div>
           </div>

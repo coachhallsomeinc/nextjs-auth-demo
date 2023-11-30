@@ -7,6 +7,15 @@ import { jwtDecode } from "jwt-decode";
 import Link from 'next/link';
 
 const ConditionalLoginContainer = () => {
+
+  // // show hidden password text
+  // const [showInputPassword, setShowInputPassword] = useState(false);
+  // const [inputPassword, setInputPassword] = useState('');
+
+  // const handleTogglePassword = () => {
+  //   setShowInputPassword(!showInputPassword);
+  // };
+
   const [view, setView] = useState('login');
 
   const showLogin = () => {
@@ -203,7 +212,8 @@ const ConditionalLoginContainer = () => {
                     placeholder='Enter Email Address' />
                 <input 
                     required 
-                    type='password'
+                    type={showInputPassword ? 'text' : 'password'}
+                    // onChange={(e) => setInputPassword(e.target.value)}
                     id='password'
                     onChange={(e) => handleChange("password", e.target.value)} 
                     className='mt-2 form-control form control-lg bg-light fs-6' 
