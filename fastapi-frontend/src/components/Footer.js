@@ -3,11 +3,6 @@ import Image from 'next/image'
 import styles from '@/styles/global.module.css';
 
 function Footer() {
-  const col3Style = {
-      display: 'block', // or 'none' depending on your needs
-    };
-
-    const mediaQuery = '@media (max-width: 767px)';
   return (
     <>
     <div className='fixed-bottom'>
@@ -21,17 +16,17 @@ function Footer() {
             <p style={{ fontSize: 'large' }} className="mb-0">Built by Tanner McDaniel</p>
           </div>
           <div className='col-1'>
-            <div className='icon-blue'>
+            <div>
                 <a href="mailto:tmmcdaniel909@gmail.com"><Image src="/img/envelope-solid.svg" width={25} height={25} /></a>
             </div>
           </div>
           <div className='col-1'>
-            <div className='icon-blue'>
-                <a target="_blank" href="https://www.linkedin.com/feed/?trk=homepage-basic_sign-in-submit"><Image src="/img/linkedin.svg" width={25} height={25} /></a>
+            <div>
+                <a target="_blank" href="https://www.linkedin.com/in/tanner-mcdaniel-8b9b96171/"><Image src="/img/linkedin.svg" width={25} height={25} /></a>
             </div>
           </div>
           <div className='col-1'>
-            <div className="icon-blue">
+            <div>
                 <a target="_blank" href="https://github.com/Tanner90909"><Image src="/img/square-github.svg" width={25} height={25} /></a>
             </div>
           </div>
