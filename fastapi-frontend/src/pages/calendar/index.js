@@ -15,7 +15,7 @@ function DailyCalendar() {
 
   return (
     <>
-    <div id={styles.page} style={{ minHeight: '100vh' }}>
+    <div id={styles.page}>
     <div className='container my-5'>
       <div className='row'>
         <Navbar />

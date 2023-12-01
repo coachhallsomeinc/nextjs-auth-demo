@@ -62,6 +62,11 @@ export default function Navbar() {
                     Calendar
                   </a>
                 </li>
+                <li className="nav-item">
+                  <a style={{ fontSize: 'x-large' }} className="nav-link" aria-current="page" href="/profiles">
+                    Profiles
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
