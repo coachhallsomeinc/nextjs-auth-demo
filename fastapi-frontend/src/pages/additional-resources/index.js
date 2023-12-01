@@ -6,14 +6,17 @@ import styles from '@/styles/global.module.css';
 function additionalResources() {
   return (
     <>
-      <div  id={styles.page}>
+      <div id={styles.page}>
         <div className='conatiner'>
           <div className='row'>
             <Navbar />
           </div>
-          <div id={styles.textbasefont} className='row mt-5'>
-            <div className='col-6 ms-4'>
-              <h1 className='mt-5'>Additional Resources</h1>
+        </div>
+        <div className='container py-5'></div>
+          <div className='container mt-5'>
+          <div id={styles.componentcolor} className="col-md-12 text-center border rounded-5 shadow">
+            <div className='ms-4'>
+              <h1 className='m-4'>Additional Resources</h1>
               <ul>
                 <li className='mt-2'>Poison Control Center: Hotline: 1-800-222-1222 (USA)</li>
                 <li className='mt-2'>National Suicide Prevention Lifeline: Hotline 1-800-273-TALK (1-800-273-8255) (USA)</li>
@@ -26,7 +29,7 @@ function additionalResources() {
               </ul>
             </div>
           </div>
-        </div>
+          </div>
       <Footer /> 
       </div> 
     </>

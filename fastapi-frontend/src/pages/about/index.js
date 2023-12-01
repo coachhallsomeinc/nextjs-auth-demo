@@ -14,7 +14,7 @@ function about_us() {
         <Navbar />
       </div>
       <div className='row mt-5'>
-        <div className='col-6'>
+      <div id={styles.componentcolor} className="col-md-6 text-center border rounded-5 shadow">
           <h1 id={styles.textbasefont}>About Us</h1>
           <p id={styles.textbasefont}>Blah blah blah about us stuff here</p>
         </div>
