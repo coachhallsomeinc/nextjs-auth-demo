@@ -1,11 +1,12 @@
 import React from "react";
 import Image from "next/image";
+import styles from '@/styles/global.module.css';
 
 export default function Navbar() {
   return (
     <>
-      <nav className="navbar bg-body-tertiary fixed-top">
-        <div className="container-fluid">
+      <nav id={styles.componentcolor} className="navbar fixed-top">
+        <div id={styles.componentcolor} className="container-fluid">
           <a className="navbar-brand" href="../">
           <Image src="/img/Asset-1.svg" width={40} height={40}/>
           </a>
@@ -28,9 +29,9 @@ export default function Navbar() {
             id="offcanvasNavbar"
             aria-labelledby="offcanvasNavbarLabel"
           >
-            <div className="offcanvas-header">
+            <div id={styles.componentcolor} className="offcanvas-header">
               <h5 className="offcanvas-title" id="offcanvasNavbarLabel">
-                TinyTrackers
+                <Image src="/img/Asset-3.svg" height={30} width={250} />
               </h5>
               <button
                 type="button"
@@ -39,20 +40,20 @@ export default function Navbar() {
                 aria-label="Close"
               ></button>
             </div>
-            <div className="offcanvas-body">
+            <div id={styles.componentcolor} className="offcanvas-body">
               <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li className="nav-item">
-                  <a className="nav-link" aria-current="page" href="/about">
+                  <a style={{ fontSize: 'x-large' }} className="nav-link" aria-current="page" href="/about">
                     About Us
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/additional-resources">
+                  <a style={{ fontSize: 'x-large' }} className="nav-link" href="/additional-resources">
                     Additional Resources
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="../">
+                  <a style={{ fontSize: 'x-large' }} className="nav-link" href="../">
                     Login
                   </a>
                 </li>

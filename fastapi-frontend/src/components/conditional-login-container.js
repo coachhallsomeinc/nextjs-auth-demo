@@ -4,6 +4,7 @@ import { useGlobalState } from '../context/GlobalState';
 import { useRouter } from 'next/navigation';
 import AuthService from '../services/auth.service';
 import { jwtDecode } from "jwt-decode";
+import styles from '@/styles/global.module.css';
 import Link from 'next/link';
 
 const ConditionalLoginContainer = () => {
@@ -135,17 +136,17 @@ const ConditionalLoginContainer = () => {
 
   return (
     <>
-    <div className='container d-flex justify-content-center min-vh-50'>
-      <div className='row border rounded-5 p-3 bg-white shadow box-area'>
+    <div id={styles.componentcolor} className='container shadow border rounded-5 d-flex justify-content-center min-vh-50'>
+      <div className='row p-3  box-area'>
         <div className='col-md-12 box'>
           <div className='row align-items-center'>
             <div className='header-text mb-4'>
-              {view === 'login' && <p className='mt-2'>Hello</p>}
+              {view === 'login' && <p id={styles.textbasefont} style={{ fontSize: 'large' }} className='mt-2'>Hello</p>}
               {view === 'signup' && <></>}
               {view === 'forgotPassword' && <></>}
-              {view === 'login' && <p className='mt-2'>Welcome to TinyTrackers!</p>}
-              {view === 'signup' && <p className='mt-2'>Create a New Account</p>}
-              {view === 'forgotPassword' && <p className='mt-2'>Forgot Password?</p>}
+              {view === 'login' && <p id={styles.textbasefont} style={{ fontSize: 'large' }} className='mt-2'>Welcome to TinyTrackers!</p>}
+              {view === 'signup' && <p id={styles.textbasefont} style={{ fontSize: 'large' }} className='mt-2'>Create a New Account</p>}
+              {view === 'forgotPassword' && <p id={styles.textbasefont} style={{ fontSize: 'large' }} className='mt-2'>Forgot Password?</p>}
             </div>
             </div>
             </div>
@@ -172,18 +173,18 @@ const ConditionalLoginContainer = () => {
             </form>
               <div className='input-group mb-3 d-flex justify-content-between'>
                 <div className='forgot mt-2 fs-6'>
-                  <a href='#' onClick={showForgotPassword}>
+                  <a id={styles.textbasefont} style={{ fontSize: 'large' }} href='#' onClick={showForgotPassword}>
                     Forgot Password?
                   </a>
                 </div>
                 {/* login logout button */}
                 <div className='login-button'>
                   {state.user ? (
-                  <button className='btn btn-lg btn-primary w-30 fs-6' type = "submit" onClick={handleLogout}>
+                  <button id={styles.textbasefont} style={{ fontSize: 'large' }} className='btn btn-lg btn-primary w-30 fs-6' type = "submit" onClick={handleLogout}>
                     Log Out
                   </button>  
                   ) : (
-                  <button className='btn btn-lg btn-primary w-30 fs-6' type = "submit" onClick={handleLogin}>
+                  <button id={styles.textbasefont} style={{ fontSize: 'large' }} className='btn btn-lg btn-primary w-30 fs-6' type = "submit" onClick={handleLogin}>
                     Log In
                   </button>
                   )}
@@ -212,7 +213,7 @@ const ConditionalLoginContainer = () => {
                     placeholder='Enter Email Address' />
                 <input 
                     required 
-                    type={showInputPassword ? 'text' : 'password'}
+                    // type={showInputPassword ? 'text' : 'password'}
                     // onChange={(e) => setInputPassword(e.target.value)}
                     id='password'
                     onChange={(e) => handleChange("password", e.target.value)} 
@@ -226,6 +227,8 @@ const ConditionalLoginContainer = () => {
                     className='mt-2 form-control form control-lg bg-light fs-6' 
                     placeholder='Confirm New Password' />
                 <button
+                  id={styles.textbasefont} 
+                  style={{ fontSize: 'large' }}
                   className='mt-2 btn btn-lg btn-primary w-30 fs-6'
                   onClick={handleRegister}
                 >
@@ -237,11 +240,12 @@ const ConditionalLoginContainer = () => {
             )}
             {view === 'forgotPassword' && (
               <div className='mb-3'>
-                <p>Security question 1</p>
+                <p id={styles.textbasefont} style={{ fontSize: 'large' }}>Security question 1</p>
                 <input type='text' className='mt-2 form-control form control-lg bg-light fs-6' placeholder='Your Answer' />
-                <p className='mt-3'>Securtiy question 2</p>
+                <p id={styles.textbasefont} style={{ fontSize: 'large' }} className='mt-3'>Securtiy question 2</p>
                 <input type='text' className='mt-2 form-control form control-lg bg-light fs-6' placeholder='Your Answer' />
                 <button
+                  id={styles.textbasefont}
                   className='mt-3 btn btn-lg btn-primary w-30 fs-6'
                   onClick={showLogin}
                 >
@@ -250,7 +254,7 @@ const ConditionalLoginContainer = () => {
               </div>
             )}
             <div className='row mb-3'>
-              <small>
+              <small id={styles.textbasefont}>
                 {view === 'login'
                   ? "Don't have an account? "
                   : 'Already have an account? '}

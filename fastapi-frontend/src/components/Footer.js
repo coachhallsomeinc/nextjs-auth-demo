@@ -1,19 +1,19 @@
 import React from 'react'
 import Image from 'next/image'
-import '../styles/global.module.css'
+import styles from '@/styles/global.module.css';
 
 function Footer() {
   return (
     <>
     <div className='fixed-bottom'>
-    <footer className="mt-5 py-3 bg-light">
+    <footer id={styles.componentcolor} className="mt-5 py-3">
       <div className="container">
         <div className="row">
           <div className="col-6">
           <Image src="/img/Asset-3.svg" width={150} height={20}/>
           </div>
           <div className="col-3 text-right">
-            <p className="mb-0">Built by Tanner McDaniel</p>
+            <p style={{ fontSize: 'large' }} className="mb-0">Built by Tanner McDaniel</p>
           </div>
           <div className='col-1'>
             <div className='icon-blue'>
