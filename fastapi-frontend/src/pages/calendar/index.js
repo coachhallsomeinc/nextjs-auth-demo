@@ -1,5 +1,5 @@
-import {React, useState} from 'react'
-import {Calendar, Views, momentLocalizer, Day, Week} from 'react-big-calendar'
+import {React, useCallback, useState} from 'react'
+import {Calendar, Views, momentLocalizer} from 'react-big-calendar'
 import moment from 'moment'
 import Navbar from '@/components/navbar';
 import Footer from '@/components/Footer';
@@ -10,6 +10,9 @@ function DailyCalendar() {
   const localizer = momentLocalizer(moment)
   const allowedViews = ['MONTH', 'WEEK', 'DAY'];
   let allViews = Object.keys(Views).filter((k) => allowedViews.includes(k)).map((k)=> Views[k])
+
+  const [view, setView] = useState(Views.DAY)
+  const onView = useCallback((newView) => setView(newView), [setView])
 
   const [events, setEvents] = useState([])
 
@@ -29,6 +32,9 @@ function DailyCalendar() {
               startAccessor="start"
               endAccessor="end"
               views={allViews}
+              // defaultView={Views.DAY}
+              // onView={onView}
+              // view={view}
               />
           </div>
         </div>
