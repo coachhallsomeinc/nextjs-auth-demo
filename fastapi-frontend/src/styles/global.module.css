@@ -10,3 +10,7 @@
   #textbasefont {
     font-family: Helvetica, Arial, sans-serif;
   }
+
+  #carouselimage {
+    max-height: 100vh;
+  }

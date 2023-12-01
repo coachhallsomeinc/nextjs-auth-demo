@@ -9,6 +9,7 @@ import styles from '@/styles/global.module.css';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/Footer';
 import ConditionalLoginContainer from '@/components/conditional-login-container';
+import CarouselHomepage from '@/components/carousel-homepage';
 import Image from 'next/image';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -69,6 +70,9 @@ export default function Home() {
             )}
         </div>
       </main> */}
+      <CarouselHomepage />
+      <div className='container mb-5'>
+      </div>
     <Footer />
     </div>
   </>
