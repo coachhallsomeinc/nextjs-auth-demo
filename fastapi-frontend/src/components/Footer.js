@@ -3,6 +3,11 @@ import Image from 'next/image'
 import styles from '@/styles/global.module.css';
 
 function Footer() {
+  const col3Style = {
+      display: 'block', // or 'none' depending on your needs
+    };
+
+    const mediaQuery = '@media (max-width: 767px)';
   return (
     <>
     <div className='fixed-bottom'>
@@ -12,7 +17,7 @@ function Footer() {
           <div className="col-6">
           <Image src="/img/Asset-3.svg" width={150} height={20}/>
           </div>
-          <div className="col-3 text-right">
+          <div id={styles.footertext} className="col-3 text-right">
             <p style={{ fontSize: 'large' }} className="mb-0">Built by Tanner McDaniel</p>
           </div>
           <div className='col-1'>
