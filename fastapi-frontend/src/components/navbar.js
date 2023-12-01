@@ -43,27 +43,27 @@ export default function Navbar() {
             <div id={styles.componentcolor} className="offcanvas-body">
               <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li className="nav-item">
-                  <a style={{ fontSize: 'x-large' }} className="nav-link" aria-current="page" href="/about">
+                  <a id={styles.textbasefont} style={{ fontSize: 'x-large' }} className="nav-link" aria-current="page" href="/about">
                     About Us
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a style={{ fontSize: 'x-large' }} className="nav-link" href="/additional-resources">
+                  <a id={styles.textbasefont} style={{ fontSize: 'x-large' }} className="nav-link" href="/additional-resources">
                     Additional Resources
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a style={{ fontSize: 'x-large' }} className="nav-link" href="../">
+                  <a id={styles.textbasefont} style={{ fontSize: 'x-large' }} className="nav-link" href="../">
                     Login
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a style={{ fontSize: 'x-large' }} className="nav-link" aria-current="page" href="/calendar">
+                  <a id={styles.textbasefont} style={{ fontSize: 'x-large' }} className="nav-link" aria-current="page" href="/calendar">
                     Calendar
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a style={{ fontSize: 'x-large' }} className="nav-link" aria-current="page" href="/profiles">
+                  <a id={styles.textbasefont} style={{ fontSize: 'x-large' }} className="nav-link" aria-current="page" href="/profiles">
                     Profiles
                   </a>
                 </li>
