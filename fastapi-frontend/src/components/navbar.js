@@ -1,8 +1,18 @@
 import React from "react";
 import Image from "next/image";
+import { useGlobalState } from "@/context/GlobalState";
+import AuthService from '../services/auth.service';
 import styles from '@/styles/global.module.css';
 
 export default function Navbar() {
+  const { state } = useGlobalState();
+
+  const handleLogout = () => {
+    AuthService.logout();
+    dispatch({ type: 'LOGOUT_USER' });
+    console.log('Logged out')
+    router.push('../');
+  };
   return (
     <>
       <nav id={styles.componentcolor} className="navbar fixed-top">
@@ -52,21 +62,31 @@ export default function Navbar() {
                     Additional Resources
                   </a>
                 </li>
-                <li className="nav-item">
-                  <a id={styles.textbasefont} style={{ fontSize: 'x-large' }} className="nav-link" href="../">
-                    Login
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a id={styles.textbasefont} style={{ fontSize: 'x-large' }} className="nav-link" aria-current="page" href="/calendar">
-                    Calendar
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a id={styles.textbasefont} style={{ fontSize: 'x-large' }} className="nav-link" aria-current="page" href="/profiles">
-                    Profiles
-                  </a>
-                </li>
+                {state.user ? (
+                  <>
+                  <li className="nav-item">
+                    <a id={styles.textbasefont} style={{ fontSize: 'x-large' }} className="nav-link" aria-current="page" href="/calendar">
+                      Calendar
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a id={styles.textbasefont} style={{ fontSize: 'x-large' }} className="nav-link" aria-current="page" href="/profiles">
+                      Profiles
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a id={styles.textbasefont} style={{ fontSize: 'x-large' }} className="nav-link" href="../" onClick={handleLogout}>
+                      Logout
+                    </a>
+                  </li>
+                  </>
+                ) : (
+                  <li className="nav-item">
+                    <a id={styles.textbasefont} style={{ fontSize: 'x-large' }} className="nav-link" href="../">
+                      Login
+                    </a>
+                  </li>
+                )}
               </ul>
             </div>
           </div>
