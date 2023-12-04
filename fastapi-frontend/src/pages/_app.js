@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
   }, []);
   
   return (
-    <GlobalStateProvider>
+    <GlobalStateProvider value= {{ }}>
       <div><Component {...pageProps} /></div>
     </GlobalStateProvider>
   );

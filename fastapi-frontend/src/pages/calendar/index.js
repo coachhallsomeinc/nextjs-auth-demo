@@ -11,13 +11,14 @@ import CalendarService from "@/services/calendar.service";
 function DailyCalendar() {
   const { state, dispatch } = useGlobalState();
   const [user_id, setUserId] = useState();
-  const [user, setUserData] = useState({});
+  const [user, setUserData] = useState(state.user);
 
   // called when loaded, checks to see if we have a user
   useEffect(() => {
     let num = 0;
     if (state.user) {
       num = state.user.user_id;
+      // console.log(state.user)
     } else {
       // get from local, set the user_id to #
       const u = JSON.parse(localStorage.getItem("user"));
@@ -29,11 +30,10 @@ function DailyCalendar() {
     } else {
       setUserId(num);
     }
-    console.log("first");
+    
   }, []);
 
   useEffect(() => {
-    // check localstorage
     if (user_id != 0) {
       const getUser = async () => {
         console.log(state);
@@ -43,12 +43,17 @@ function DailyCalendar() {
         );
         console.log(response);
         setUserData(response.data);
+        
       };
       getUser() // make sure to catch any error
         .catch(console.error);
-      console.log("second");
     }
   }, [user_id]);
+
+  useEffect(() => {
+    dispatch({type: "SET_USER", payload: user});
+    console.log('in SET USER useEffect, and the user is: ' + {...user})
+  }, [user])
 
   const localizer = momentLocalizer(moment);
   const allowedViews = ["MONTH", "WEEK", "DAY"];

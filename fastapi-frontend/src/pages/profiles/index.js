@@ -1,9 +1,25 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/Footer';
 import styles from '@/styles/global.module.css';
+import { GlobalStateProvider, useGlobalState } from '@/context/GlobalState';
+import { jwtDecode } from "jwt-decode";
+import CalendarService from "@/services/calendar.service";
 
 function ProfilesPage() {
+  const { state, dispatch } = useGlobalState();
+  const [user_id, setUserId] = useState();
+  const [user, setUserData] = useState({});
+
+  // const context = useContext(GlobalStateProvider)
+
+  console.log(context)
+
+  useEffect(() => {
+    console.log(state)
+    }, [user])
+
   return (
     <>
     <div id={styles.page}>
@@ -18,7 +34,7 @@ function ProfilesPage() {
                 <div className="accordion-item" id={styles.componentcolor}>
                     <h2 className="accordion-header">
                     <button id={styles.componentcolor} className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                        <div id={styles.textbasefont}>Parent's Name Here</div>
+                        <div id={styles.textbasefont}></div>
                     </button>
                     </h2>
                     <div id="panelsStayOpen-collapseOne" className="accordion-collapse collapse show">
