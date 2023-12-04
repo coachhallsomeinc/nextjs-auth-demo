@@ -29,17 +29,25 @@ function DailyCalendar() {
     } else {
       setUserId(num);
     }
+    console.log("first");
   }, []);
 
   useEffect(() => {
     // check localstorage
-    const getUser = async () => {
-      let response = await CalendarService.getUserData(user_id);
-      console.log(response);
-      setUserData(response.data);
-    };
-    getUser() // make sure to catch any error
-      .catch(console.error);
+    if (user_id != 0) {
+      const getUser = async () => {
+        console.log(state);
+        let response = await CalendarService.getUserData(
+          user_id,
+          state.user.access_token
+        );
+        console.log(response);
+        setUserData(response.data);
+      };
+      getUser() // make sure to catch any error
+        .catch(console.error);
+      console.log("second");
+    }
   }, [user_id]);
 
   const localizer = momentLocalizer(moment);
@@ -57,11 +65,11 @@ function DailyCalendar() {
     <>
       <div id={styles.page}>
         <div className="container my-5">
-          {/* <div className="row"><Navbar /></div> */}
+          <div className="row"><Navbar /></div>
           {state.user ? (
             <>
               <div className="row">
-                <p>Hello, {user.username}</p>
+                <p className="mt-5">Hello, {user.username}</p>
               </div>
             </>
           ) : (
