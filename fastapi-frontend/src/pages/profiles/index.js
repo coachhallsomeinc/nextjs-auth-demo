@@ -14,7 +14,7 @@ function ProfilesPage() {
 
   // const context = useContext(GlobalStateProvider)
 
-  console.log(context)
+
 
   useEffect(() => {
     console.log(state)

@@ -20,7 +20,7 @@ function reducer(state, action) {
 export function GlobalStateProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <GlobalStateContext.Provider>
+    <GlobalStateContext.Provider value={{ state, dispatch }}>
       {children}
     </GlobalStateContext.Provider>
   );
