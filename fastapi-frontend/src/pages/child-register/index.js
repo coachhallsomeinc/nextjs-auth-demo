@@ -32,7 +32,7 @@ function childRegister() {
                     id={styles.textbasefont}
                     style={{ fontSize: "large" }}
                     className="btn btn-lg btn-primary w-30 fs-6"
-                    href="#"
+                    href="/child-code-register"
                 >
                     Enter Child ID Code
                 </Link>
