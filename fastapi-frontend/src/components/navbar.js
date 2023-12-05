@@ -1,27 +1,27 @@
 import React from "react";
 import Image from "next/image";
 import { useGlobalState } from "@/context/GlobalState";
-import AuthService from '../services/auth.service';
-import styles from '@/styles/global.module.css';
+import AuthService from "../services/auth.service";
+import styles from "@/styles/global.module.css";
 
 export default function Navbar() {
   const { state } = useGlobalState();
 
   const handleLogout = () => {
     AuthService.logout();
-    dispatch({ type: 'LOGOUT_USER' });
-    console.log('Logged out')
-    router.push('../');
+    dispatch({ type: "LOGOUT_USER" });
+    console.log("Logged out");
+    router.push("../");
   };
   return (
     <>
       <nav id={styles.componentcolor} className="navbar fixed-top">
         <div id={styles.componentcolor} className="container-fluid">
           <a className="navbar-brand" href="../">
-          <Image src="/img/Asset-1.svg" width={40} height={40}/>
+            <Image src="/img/Asset-1.svg" width={40} height={40} />
           </a>
           <a className="navbar-brand" href="../">
-          <Image src="/img/Asset-3.svg" width={250} height={40}/>
+            <Image src="/img/Asset-3.svg" width={250} height={40} />
           </a>
           <button
             className="navbar-toggler"
@@ -53,36 +53,70 @@ export default function Navbar() {
             <div id={styles.componentcolor} className="offcanvas-body">
               <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li className="nav-item">
-                  <a id={styles.textbasefont} style={{ fontSize: 'x-large' }} className="nav-link" aria-current="page" href="/about">
+                  <a
+                    id={styles.textbasefont}
+                    style={{ fontSize: "x-large" }}
+                    className="nav-link"
+                    aria-current="page"
+                    href="/about"
+                  >
                     About Us
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a id={styles.textbasefont} style={{ fontSize: 'x-large' }} className="nav-link" href="/additional-resources">
+                  <a
+                    id={styles.textbasefont}
+                    style={{ fontSize: "x-large" }}
+                    className="nav-link"
+                    href="/additional-resources"
+                  >
                     Additional Resources
                   </a>
                 </li>
                 {state.user ? (
                   <>
-                  <li className="nav-item">
-                    <a id={styles.textbasefont} style={{ fontSize: 'x-large' }} className="nav-link" aria-current="page" href="/calendar">
-                      Calendar
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a id={styles.textbasefont} style={{ fontSize: 'x-large' }} className="nav-link" aria-current="page" href="/profiles">
-                      Profiles
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a id={styles.textbasefont} style={{ fontSize: 'x-large' }} className="nav-link" href="../" onClick={handleLogout}>
-                      Logout
-                    </a>
-                  </li>
+                    <li className="nav-item">
+                      <a
+                        id={styles.textbasefont}
+                        style={{ fontSize: "x-large" }}
+                        className="nav-link"
+                        aria-current="page"
+                        href="/calendar"
+                      >
+                        Calendar
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a
+                        id={styles.textbasefont}
+                        style={{ fontSize: "x-large" }}
+                        className="nav-link"
+                        aria-current="page"
+                        href="/profiles"
+                      >
+                        Profiles
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a
+                        id={styles.textbasefont}
+                        style={{ fontSize: "x-large" }}
+                        className="nav-link"
+                        href="../"
+                        onClick={handleLogout}
+                      >
+                        Logout
+                      </a>
+                    </li>
                   </>
                 ) : (
                   <li className="nav-item">
-                    <a id={styles.textbasefont} style={{ fontSize: 'x-large' }} className="nav-link" href="../">
+                    <a
+                      id={styles.textbasefont}
+                      style={{ fontSize: "x-large" }}
+                      className="nav-link"
+                      href="../"
+                    >
                       Login
                     </a>
                   </li>

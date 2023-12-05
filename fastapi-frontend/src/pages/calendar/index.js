@@ -43,7 +43,7 @@ function DailyCalendar() {
         );
         console.log(response);
         setUserData(response.data);
-        
+        console.log(state.user)
       };
       getUser() // make sure to catch any error
         .catch(console.error);
