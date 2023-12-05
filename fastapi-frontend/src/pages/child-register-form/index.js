@@ -6,6 +6,16 @@ import "bootstrap/dist/css/bootstrap.css";
 import Link from "next/link";
 
 function ChildRegisterForm() {
+
+    const handleChildRegistration = async () => {
+        try {
+            const response = await axios.post('backend route url here', registrationFormData);
+            console.log(response.data)
+        } catch (error) {
+            console.error('Error during child registration:', error.message);
+        }
+    };
+
   return (
     <>
       <div id={styles.page}>
