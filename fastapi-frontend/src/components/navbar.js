@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useGlobalState } from "@/context/GlobalState";
 import AuthService from "../services/auth.service";
 import styles from "@/styles/global.module.css";
+import Link from "next/link";
 
 export default function Navbar() {
   const { state } = useGlobalState();
@@ -17,12 +18,12 @@ export default function Navbar() {
     <>
       <nav id={styles.componentcolor} className="navbar fixed-top">
         <div id={styles.componentcolor} className="container-fluid">
-          <a className="navbar-brand" href="../">
+          <Link className="navbar-brand" href="../">
             <Image src="/img/Asset-1.svg" width={40} height={40} />
-          </a>
-          <a className="navbar-brand" href="../">
+          </Link>
+          <Link className="navbar-brand" href="../">
             <Image src="/img/Asset-3.svg" width={250} height={40} />
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -53,7 +54,7 @@ export default function Navbar() {
             <div id={styles.componentcolor} className="offcanvas-body">
               <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li className="nav-item">
-                  <a
+                  <Link
                     id={styles.textbasefont}
                     style={{ fontSize: "x-large" }}
                     className="nav-link"
@@ -61,22 +62,22 @@ export default function Navbar() {
                     href="/about"
                   >
                     About Us
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a
+                  <Link
                     id={styles.textbasefont}
                     style={{ fontSize: "x-large" }}
                     className="nav-link"
                     href="/additional-resources"
                   >
                     Additional Resources
-                  </a>
+                  </Link>
                 </li>
                 {state.user ? (
                   <>
                     <li className="nav-item">
-                      <a
+                      <Link
                         id={styles.textbasefont}
                         style={{ fontSize: "x-large" }}
                         className="nav-link"
@@ -84,10 +85,10 @@ export default function Navbar() {
                         href="/calendar"
                       >
                         Calendar
-                      </a>
+                      </Link>
                     </li>
                     <li className="nav-item">
-                      <a
+                      <Link
                         id={styles.textbasefont}
                         style={{ fontSize: "x-large" }}
                         className="nav-link"
@@ -95,10 +96,10 @@ export default function Navbar() {
                         href="/profiles"
                       >
                         Profiles
-                      </a>
+                      </Link>
                     </li>
                     <li className="nav-item">
-                      <a
+                      <Link
                         id={styles.textbasefont}
                         style={{ fontSize: "x-large" }}
                         className="nav-link"
@@ -106,19 +107,19 @@ export default function Navbar() {
                         onClick={handleLogout}
                       >
                         Logout
-                      </a>
+                      </Link>
                     </li>
                   </>
                 ) : (
                   <li className="nav-item">
-                    <a
+                    <Link
                       id={styles.textbasefont}
                       style={{ fontSize: "x-large" }}
                       className="nav-link"
                       href="../"
                     >
                       Login
-                    </a>
+                    </Link>
                   </li>
                 )}
               </ul>

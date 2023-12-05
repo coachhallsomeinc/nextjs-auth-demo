@@ -3,18 +3,59 @@ import { useState, useEffect } from "react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/Footer";
 import styles from "@/styles/global.module.css";
-import { GlobalStateProvider, useGlobalState } from "@/context/GlobalState";
+import { useGlobalState } from "@/context/GlobalState";
 import { jwtDecode } from "jwt-decode";
-import CalendarService from "@/services/calendar.service";
+import GetUserService from "@/services/getuser.service";
 import { useRouter } from "next/router";
 
 function ProfilesPage() {
   const { state } = useGlobalState();
   const [user_id, setUserId] = useState();
-  const [user, setUserData] = useState({});
+  const [user, setUserData] = useState(state.user);
   const router = useRouter();
 
-  console.log(state);
+  useEffect(() => {
+    let num = 0;
+    if (state.user) {
+      num = state.user.user_id;
+      // console.log(state.user)
+    } else {
+      // get from local, set the user_id to #
+      const u = JSON.parse(localStorage.getItem("user"));
+      num = u.user_id;
+    }
+    if (num == 0) {
+      // redirect back to login
+      router.push("../");
+    } else {
+      setUserId(num);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (user_id != 0) {
+      const getUser = async () => {
+        console.log(state);
+        let response = await GetUserService.getUserData(
+          user_id,
+          state.user.access_token
+        );
+        console.log(response);
+        setUserData(response.data);
+        // dispatch response.data here
+        console.log(state.user);
+      };
+      getUser() // make sure to catch any error
+        .catch(console.error);
+    }
+  }, [user_id]);
+
+  // useEffect(() => {
+  //   // localStorage.getItem("user")
+  //   console.log(state.user)
+  // }, [])
+
+  // console.log(state);
 
   // if (!state.isAuthenticated) {
   //   router.push("../")
@@ -46,7 +87,7 @@ function ProfilesPage() {
                         aria-expanded="true"
                         aria-controls="panelsStayOpen-collapseOne"
                       >
-                        <div id={styles.textbasefont}></div>
+                        <div id={styles.textbasefont}>{user.username}</div>
                       </button>
                     </h2>
                     <div
@@ -55,7 +96,10 @@ function ProfilesPage() {
                     >
                       <div className="accordion-body">
                         <div id={styles.textbasefont}>
-                          Parent Profile Information here
+                          <ul>
+                            <li>{user.username}</li>
+                            <li>{user.email}</li>
+                          </ul>
                         </div>
                       </div>
                     </div>

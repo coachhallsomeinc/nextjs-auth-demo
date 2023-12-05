@@ -6,12 +6,16 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/Footer";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import styles from "@/styles/global.module.css";
-import CalendarService from "@/services/calendar.service";
+import GetUserService from "@/services/getuser.service";
 
 function DailyCalendar() {
   const { state, dispatch } = useGlobalState();
   const [user_id, setUserId] = useState();
   const [user, setUserData] = useState(state.user);
+
+  // useEffect(() => {
+  //   console.log(state.user)
+  // },[])
 
   // called when loaded, checks to see if we have a user
   useEffect(() => {
@@ -30,30 +34,30 @@ function DailyCalendar() {
     } else {
       setUserId(num);
     }
-    
   }, []);
 
   useEffect(() => {
     if (user_id != 0) {
       const getUser = async () => {
         console.log(state);
-        let response = await CalendarService.getUserData(
+        let response = await GetUserService.getUserData(
           user_id,
           state.user.access_token
         );
         console.log(response);
         setUserData(response.data);
-        console.log(state.user)
+        // dispatch response.data here
+        console.log(state.user);
       };
       getUser() // make sure to catch any error
         .catch(console.error);
     }
   }, [user_id]);
 
-  useEffect(() => {
-    dispatch({type: "SET_USER", payload: user});
-    console.log('in SET USER useEffect, and the user is: ' + {...user})
-  }, [user])
+  // useEffect(() => {
+  //   // dispatch({type: "SET_USER", payload: user});
+  //   console.log('in SET USER useEffect, and the user is: ' + {...user})
+  // }, [user])
 
   const localizer = momentLocalizer(moment);
   const allowedViews = ["MONTH", "WEEK", "DAY"];
@@ -70,7 +74,9 @@ function DailyCalendar() {
     <>
       <div id={styles.page}>
         <div className="container my-5">
-          <div className="row"><Navbar /></div>
+          <div className="row">
+            <Navbar />
+          </div>
           {state.user ? (
             <>
               <div className="row">

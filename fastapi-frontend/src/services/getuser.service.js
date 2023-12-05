@@ -8,7 +8,7 @@ import {
 
 import request from "./api.request";
 
-class CalendarService {
+class GetUserService {
   constructor() {
     this.getUserData = this.getUserData.bind(this);
   }
@@ -39,4 +39,4 @@ class CalendarService {
   }
 }
 
-export default new CalendarService();
+export default new GetUserService();

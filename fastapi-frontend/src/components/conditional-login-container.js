@@ -124,7 +124,7 @@ const ConditionalLoginContainer = () => {
           payload: data,
         });
         console.log("Login success");
-        router.push("/");
+        router.push("/child-register")
       } else {
         console.log("Login failed");
         dispatch({ type: "LOGOUT_USER" });
@@ -211,14 +211,14 @@ const ConditionalLoginContainer = () => {
               </form>
               <div className="input-group mb-3 d-flex justify-content-between">
                 <div className="forgot mt-2 fs-6">
-                  <a
+                  <Link
                     id={styles.textbasefont}
                     style={{ fontSize: "large" }}
                     href="#"
                     onClick={showForgotPassword}
                   >
                     Forgot Password?
-                  </a>
+                  </Link>
                 </div>
                 {/* login logout button */}
                 <div className="login-button">
@@ -271,8 +271,7 @@ const ConditionalLoginContainer = () => {
                   />
                   <input
                     required
-                    // type={showInputPassword ? 'text' : 'password'}
-                    // onChange={(e) => setInputPassword(e.target.value)}
+                    type="password"
                     id="password"
                     onChange={(e) => handleChange("password", e.target.value)}
                     className="mt-2 form-control form control-lg bg-light fs-6"
@@ -336,9 +335,9 @@ const ConditionalLoginContainer = () => {
               {view === "login"
                 ? "Don't have an account? "
                 : "Already have an account? "}
-              <a href="#" onClick={view === "login" ? showSignup : showLogin}>
+              <Link href="#" onClick={view === "login" ? showSignup : showLogin}>
                 {view === "login" ? "Sign up" : "Log in"}
-              </a>
+              </Link>
             </small>
           </div>
         </div>
