@@ -9,13 +9,12 @@ import Link from "next/link";
 import request from "@/services/api.request";
 
 const ConditionalLoginContainer = () => {
-  // // show hidden password text
-  // const [showInputPassword, setShowInputPassword] = useState(false);
-  // const [inputPassword, setInputPassword] = useState('');
+  // show hidden password text
+  const [showInputPassword, setShowInputPassword] = useState(false);
 
-  // const handleTogglePassword = () => {
-  //   setShowInputPassword(!showInputPassword);
-  // };
+  const handleTogglePassword = () => {
+    setShowInputPassword(!showInputPassword);
+  };
 
   const [view, setView] = useState("login");
 
@@ -123,8 +122,9 @@ const ConditionalLoginContainer = () => {
           type: "SET_USER",
           payload: data,
         });
+        localStorage.setItem("user", JSON.stringify(data));
         console.log("Login success");
-        router.push("/child-register")
+        router.push("/child-register");
       } else {
         console.log("Login failed");
         dispatch({ type: "LOGOUT_USER" });
@@ -201,12 +201,19 @@ const ConditionalLoginContainer = () => {
                 </div>
                 <div className="input-group mb-1">
                   <input
-                    type="password"
+                    type={showInputPassword ? "text" : "password"}
                     className="form-control form control-lg bg-light fs-6"
                     placeholder="Password"
                     required
                     onChange={(e) => setPassword(e.target.value)}
                   />
+                  <button
+                    className="btn btn-outline-secondary"
+                    type="button"
+                    onClick={handleTogglePassword}
+                  >
+                    {showInputPassword ? "Hide" : "Show"}
+                  </button>
                 </div>
               </form>
               <div className="input-group mb-3 d-flex justify-content-between">
@@ -269,24 +276,43 @@ const ConditionalLoginContainer = () => {
                     className="mt-2 form-control form control-lg bg-light fs-6"
                     placeholder="Enter Email Address"
                   />
-                  <input
-                    required
-                    type="password"
-                    id="password"
-                    onChange={(e) => handleChange("password", e.target.value)}
-                    className="mt-2 form-control form control-lg bg-light fs-6"
-                    placeholder="Enter New Password"
-                  />
-                  <input
-                    required
-                    type="password"
-                    id="passwordConf"
-                    onChange={(e) =>
-                      handleChange("passwordConf", e.target.value)
-                    }
-                    className="mt-2 form-control form control-lg bg-light fs-6"
-                    placeholder="Confirm New Password"
-                  />
+                  <div className="input-group">
+                    <input
+                      type={showInputPassword ? "text" : "password"}
+                      id="password"
+                      onChange={(e) => handleChange("password", e.target.value)}
+                      className="mt-2 form-control form control-lg bg-light fs-6"
+                      placeholder="Enter New Password"
+                      required
+                    />
+                      <button
+                        className="mt-2 btn btn-outline-secondary"
+                        type="button"
+                        onClick={handleTogglePassword}
+                      >
+                        {showInputPassword ? "Hide" : "Show"}
+                      </button>
+                  </div>
+
+                  <div className="input-group">
+                    <input
+                      type={showInputPassword ? "text" : "password"}
+                      id="passwordConf"
+                      onChange={(e) =>
+                        handleChange("passwordConf", e.target.value)
+                      }
+                      className="mt-2 form-control form control-lg bg-light fs-6"
+                      placeholder="Confirm New Password"
+                      required
+                    />
+                      <button
+                        className="mt-2 btn btn-outline-secondary"
+                        type="button"
+                        onClick={handleTogglePassword}
+                      >
+                        {showInputPassword ? "Hide" : "Show"}
+                      </button>
+                  </div>
                   <button
                     id={styles.textbasefont}
                     style={{ fontSize: "large" }}
@@ -335,7 +361,10 @@ const ConditionalLoginContainer = () => {
               {view === "login"
                 ? "Don't have an account? "
                 : "Already have an account? "}
-              <Link href="#" onClick={view === "login" ? showSignup : showLogin}>
+              <Link
+                href="#"
+                onClick={view === "login" ? showSignup : showLogin}
+              >
                 {view === "login" ? "Sign up" : "Log in"}
               </Link>
             </small>
