@@ -74,7 +74,6 @@ const ConditionalLoginContainer = () => {
     const username = email;
     AuthService.login(username, password)
       .then(async (resp) => {
-        console.log(resp)
         if (resp != undefined) {
           if (resp.access_token) {
             //let data = jwtDecode(resp.access_token);
@@ -116,7 +115,6 @@ const ConditionalLoginContainer = () => {
     e.preventDefault();
     try {
       const resp = await AuthService.register(user);
-      console.log(resp)
       if (resp.data.access_token) {
         //let data = jwtDecode(resp.access_token);
         let data = jwtDecode(resp.data.access_token, { header: true });
@@ -125,6 +123,7 @@ const ConditionalLoginContainer = () => {
           payload: data,
         });
         localStorage.setItem("user", JSON.stringify(resp.data));
+        localStorage.setItem("access_token", resp.data.access_token)
         console.log("Login success");
         router.push("/child-register");
       } else {
