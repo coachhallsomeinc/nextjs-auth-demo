@@ -43,9 +43,10 @@ const ConditionalLoginContainer = () => {
   useEffect(() => {
     const getUserFromLocalStorage = () => {
       const userData = localStorage.getItem("user");
+      // console.log(userData)
       if (userData) {
         const user = jwtDecode(userData);
-        console.log("User data:", user);
+        // console.log("User data:", user);
         dispatch({
           type: "SET_USER",
           payload: user,
@@ -73,6 +74,7 @@ const ConditionalLoginContainer = () => {
     const username = email;
     AuthService.login(username, password)
       .then(async (resp) => {
+        console.log(resp)
         if (resp != undefined) {
           if (resp.access_token) {
             //let data = jwtDecode(resp.access_token);
@@ -114,7 +116,7 @@ const ConditionalLoginContainer = () => {
     e.preventDefault();
     try {
       const resp = await AuthService.register(user);
-
+      console.log(resp)
       if (resp.data.access_token) {
         //let data = jwtDecode(resp.access_token);
         let data = jwtDecode(resp.data.access_token, { header: true });
@@ -122,7 +124,7 @@ const ConditionalLoginContainer = () => {
           type: "SET_USER",
           payload: data,
         });
-        localStorage.setItem("user", JSON.stringify(data));
+        localStorage.setItem("user", JSON.stringify(resp.data));
         console.log("Login success");
         router.push("/child-register");
       } else {
