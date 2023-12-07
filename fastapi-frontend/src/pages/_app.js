@@ -5,7 +5,7 @@ import styles from '../styles/global.module.css';
 function MyApp({ Component, pageProps }) {
   return (
     <GlobalStateProvider>
-      <div><Component {...pageProps} /></div>
+      <div className={styles}><Component {...pageProps} /></div>
     </GlobalStateProvider>
   );
 }

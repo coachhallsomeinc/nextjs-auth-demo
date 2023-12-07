@@ -11,6 +11,10 @@ function reducer(state, action) {
       return { ...state, user: action.payload };
     case 'LOGOUT_USER':
       return { ...state, user: null };
+    case 'SEND_DATA_COMPLETED':
+      return { ...state, data: null };
+    case 'GET_DATA_COMPLETED':
+      return { ...state, data: null };
     default:
       return state;
   }

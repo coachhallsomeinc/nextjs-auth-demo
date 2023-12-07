@@ -21,13 +21,13 @@ function LoginPage() {
                 if(resp != undefined){
                     if (resp.access_token) {
                         //let data = jwtDecode(resp.access_token);
-                        let data = jwtDecode(resp.access_token, { header: true });
+                        let data = resp;
                         await dispatch({
                             type: 'SET_USER',
                             payload: data,
                         });
                         console.log('Login success');
-                        router.push('/');
+                        
                     } else {
                         console.log('Login failed');
                         dispatch({ type: 'LOGOUT_USER' });
@@ -43,6 +43,7 @@ function LoginPage() {
             .finally(() => {
                 // Code to run regardless of success or failure
                 console.log('Login request completed');
+                router.push('/dashboard');
             });
     };
 //------------------------------------------------------------------------------------------------------------------------------

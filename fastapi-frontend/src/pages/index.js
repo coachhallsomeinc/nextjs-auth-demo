@@ -13,13 +13,13 @@ export default function Home() {
 
   useEffect(() => {
     const getUserFromLocalStorage = () => {
-      const userData = localStorage.getItem('user');
-      if (userData) {
-        const user = jwtDecode(userData);
-        console.log('User data:', user);
+      const data = localStorage.getItem('user');
+      //const data = jwtDecode(data);
+      if (data) {
+        console.log('User data:', data);
         dispatch({
           type: 'SET_USER',
-          payload: user
+          payload: data
         });
       }
     };
