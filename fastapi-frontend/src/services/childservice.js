@@ -33,6 +33,26 @@ import {
             throw error
         }
     }
+
+    async registerChildWithCode(data) {
+        try {
+            const response = await request({
+                url: API_URL + REGISTERNEWCHILDWITHCODE_ENPOINT,
+                method: 'POST',
+                data: data.data,
+                headers: data.headers
+            });
+            if (response && response.data) {
+                return response.data;
+            } else {
+                console.error('Invalid response:', response);
+                throw new Error('Invalid response from the server');
+            }
+        } catch (error) {
+            console.error('Error registering child:', error);
+            throw error
+        }
+    }
   }
 
 export default new ChildService();

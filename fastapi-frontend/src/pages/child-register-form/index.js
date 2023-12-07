@@ -26,7 +26,6 @@ const ChildRegisterForm = () => {
       // console.log(accessToken);
 
       const childData = {
-        // parent_token: accessToken || "str",
         child_first_name: child?.firstName || "str", 
         child_last_name: child?.lastName || "str",
         child_dob: child?.dob || "str",
