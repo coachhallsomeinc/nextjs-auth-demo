@@ -12,16 +12,17 @@ import {
         this.registerChild = this.registerChild.bind(this)
     }
 
-    async registerChild(accessToken, childData) {
+    async registerChild(childData) {
+    // async registerChild(accessToken, childData) {
         try {
             const response = await request({
                 url: API_URL + 'children/registerchild',
                 method: 'POST',
                 data: childData,
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${accessToken}`,
-                },
+                // headers: {
+                //     'Content-Type': 'application/json',
+                //     Authorization: `Bearer ${accessToken}`,
+                // },
             });
             if (response && response.data) {
                 return response.data;

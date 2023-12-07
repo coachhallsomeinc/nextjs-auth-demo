@@ -18,21 +18,23 @@ const ChildRegisterForm = () => {
 
   const handleChildRegistration = async () => {
     try {
-      const accessToken = localStorage.getItem("access_token");
-      console.log(accessToken);
+      // const accessToken = localStorage.getItem("access_token");
+      // console.log(accessToken);
 
       const childData = {
-        child_first_name: child.firstName,
-        child_last_name: child.lastName,
-        child_dob: child.dob,
-        child_allergies: child.allergies,
-        child_pediatrician_name: child.pediatricianName,
-        child_pediatrician_phone_number: child.pediatricianPhoneNumber,
+        // parent_token: accessToken || "str",
+        child_first_name: child?.firstName || "str", 
+        child_last_name: child?.lastName || "str",
+        child_dob: child?.dob || "str",
+        child_allergies: child?.allergies || "str",
+        child_pediatrician_name: child?.pediatricianName || "str",
+        child_pediatrician_phone_number: child?.pediatricianPhoneNumber || "str",
       };
 
       console.log(childData);
 
-      const response = await ChildService.registerChild(accessToken, childData);
+      const response = await ChildService.registerChild(childData);
+      // const response = await ChildService.registerChild(accessToken, childData);
       console.log("Child registration response:", response);
     } catch (error) {
       console.error("Error during child registration:", error.message);
