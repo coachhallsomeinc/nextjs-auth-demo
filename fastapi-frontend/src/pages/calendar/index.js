@@ -62,6 +62,13 @@ function DailyCalendar() {
 
   const localizer = momentLocalizer(moment);
   const [events, setEvents] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  const handleSelect = ({ start }) => {
+    setShowModal(true);
+    setSelectedDate(moment(start).startOf('day').toDate());
+  };
 
   return (
     <>

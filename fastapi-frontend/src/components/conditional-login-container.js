@@ -82,7 +82,7 @@ const ConditionalLoginContainer = () => {
               type: "SET_USER",
               payload: data,
             });
-            localStorage.setItem("user", JSON.stringify(data));
+            // localStorage.setItem("user", JSON.stringify(data));
             console.log("Login success");
             router.push("/calendar");
           } else {
