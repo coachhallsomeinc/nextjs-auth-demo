@@ -3,6 +3,8 @@ import {
     REFRESH_ENDPOINT,
     REGISTER_ENDPOINT,
     API_URL,
+    REGISTERNEWCHILD_ENPOINT,
+    REGISTERNEWCHILDWITHCODE_ENPOINT
   } from "./auth.constants";
   
   import request from "./api.request";
@@ -12,17 +14,13 @@ import {
         this.registerChild = this.registerChild.bind(this)
     }
 
-    async registerChild(childData) {
-    // async registerChild(accessToken, childData) {
+    async registerChild(data) {
         try {
             const response = await request({
-                url: API_URL + 'children/registerchild',
+                url: API_URL + REGISTERNEWCHILD_ENPOINT,
                 method: 'POST',
-                data: childData,
-                // headers: {
-                //     'Content-Type': 'application/json',
-                //     Authorization: `Bearer ${accessToken}`,
-                // },
+                data: data.data,
+                headers: data.headers
             });
             if (response && response.data) {
                 return response.data;

@@ -66,8 +66,8 @@ const ConditionalLoginContainer = () => {
   // code from justins login screen
 
   const router = useRouter();
-  const [email, setEmail] = useState("bob@dos.com");
-  const [password, setPassword] = useState("bobiscool");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   //------------------------------------------------------------------------------------------------------------------------------
   const handleLogin = (e) => {
     e.preventDefault();
@@ -115,15 +115,16 @@ const ConditionalLoginContainer = () => {
     e.preventDefault();
     try {
       const resp = await AuthService.register(user);
+
       if (resp.data.access_token) {
         //let data = jwtDecode(resp.access_token);
-        let data = jwtDecode(resp.data.access_token, { header: true });
+        let data = resp.data;
         await dispatch({
           type: "SET_USER",
           payload: data,
         });
-        localStorage.setItem("user", JSON.stringify(resp.data));
-        localStorage.setItem("access_token", resp.data.access_token)
+        // localStorage.setItem("user", JSON.stringify(resp.data));
+        // localStorage.setItem("access_token", resp.data.access_token)
         console.log("Login success");
         router.push("/child-register");
       } else {

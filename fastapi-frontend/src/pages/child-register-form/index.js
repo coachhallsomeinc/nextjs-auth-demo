@@ -5,8 +5,12 @@ import Footer from "@/components/Footer";
 import ChildService from "@/services/childservice";
 import "bootstrap/dist/css/bootstrap.css";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useGlobalState } from "@/context/GlobalState";
 
 const ChildRegisterForm = () => {
+  const { state, dispatch } = useGlobalState();
+  const router = useRouter();
   const [child, setChild] = useState({
     firstName: "",
     lastName: "",
@@ -31,11 +35,23 @@ const ChildRegisterForm = () => {
         child_pediatrician_phone_number: child?.pediatricianPhoneNumber || "str",
       };
 
-      console.log(childData);
+      const data = {
+        data: childData,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "Authorization":"Bearer " + state.user.access_token
+        }
+      }
 
-      const response = await ChildService.registerChild(childData);
+      console.log(state)
+      console.log(data)
+
+      const response = await ChildService.registerChild(data);
       // const response = await ChildService.registerChild(accessToken, childData);
       console.log("Child registration response:", response);
+      if (response){
+        router.push("/calendar")
+      }
     } catch (error) {
       console.error("Error during child registration:", error.message);
     }

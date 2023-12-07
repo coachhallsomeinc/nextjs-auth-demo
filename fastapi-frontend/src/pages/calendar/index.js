@@ -40,6 +40,7 @@ function DailyCalendar() {
     if (user_id != 0) {
       const getUser = async () => {
         console.log(state);
+        console.log(state.user)
         let response = await GetUserService.getUserData(
           user_id,
           state.user.access_token
@@ -60,14 +61,6 @@ function DailyCalendar() {
   // }, [user])
 
   const localizer = momentLocalizer(moment);
-  const allowedViews = ["MONTH", "WEEK", "DAY"];
-  let allViews = Object.keys(Views)
-    .filter((k) => allowedViews.includes(k))
-    .map((k) => Views[k]);
-
-  const [view, setView] = useState(Views.DAY);
-  const onView = useCallback((newView) => setView(newView), [setView]);
-
   const [events, setEvents] = useState([]);
 
   return (
@@ -95,10 +88,8 @@ function DailyCalendar() {
                   events={events}
                   startAccessor="start"
                   endAccessor="end"
-                  views={allViews}
-                  // defaultView={Views.DAY}
-                  // onView={onView}
-                  // view={view}
+                  defaultView="day"
+                  views={["day", "week", "month"]}
                 />
               </div>
             </div>

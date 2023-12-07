@@ -19,10 +19,10 @@ export default function Navbar() {
       <nav id={styles.componentcolor} className="navbar fixed-top">
         <div id={styles.componentcolor} className="container-fluid">
           <Link className="navbar-brand" href="../">
-            <Image src="/img/Asset-1.svg" width={40} height={40} />
+            <Image alt="image" src="/img/Asset-1.svg" width={40} height={40} />
           </Link>
           <Link className="navbar-brand" href="../">
-            <Image src="/img/Asset-3.svg" width={250} height={40} />
+            <Image alt="image" src="/img/Asset-3.svg" width={250} height={40} />
           </Link>
           <button
             className="navbar-toggler"
@@ -42,7 +42,7 @@ export default function Navbar() {
           >
             <div id={styles.componentcolor} className="offcanvas-header">
               <h5 className="offcanvas-title" id="offcanvasNavbarLabel">
-                <Image src="/img/Asset-3.svg" height={30} width={250} />
+                <Image alt="image" src="/img/Asset-3.svg" height={30} width={250} />
               </h5>
               <button
                 type="button"
