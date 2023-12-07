@@ -66,7 +66,7 @@ function RegisterPage() {
                 onChange={(e) => {
                   let olduser = user;
                   olduser.email = e.target.value;
-                  olduser.username = e.target.value;
+                  // olduser.username = e.target.value;
                   setUser(olduser);
                 }}
               />

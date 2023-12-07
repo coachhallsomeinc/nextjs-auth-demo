@@ -71,8 +71,8 @@ const ConditionalLoginContainer = () => {
   //------------------------------------------------------------------------------------------------------------------------------
   const handleLogin = (e) => {
     e.preventDefault();
-    const username = email;
-    AuthService.login(username, password)
+    // const username = email;
+    AuthService.login(email, password)
       .then(async (resp) => {
         if (resp != undefined) {
           if (resp.access_token) {
@@ -262,6 +262,11 @@ const ConditionalLoginContainer = () => {
                 <div className="mb-3">
                   <input
                     required
+                    onChange={(e) => {
+                      let olduser = user;
+                      olduser.username = e.target.value;
+                      setUser(olduser);
+                    }}
                     type="text"
                     className="mt-2 form-control form control-lg bg-light fs-6"
                     placeholder="Enter Your Name"
@@ -271,7 +276,6 @@ const ConditionalLoginContainer = () => {
                     onChange={(e) => {
                       let olduser = user;
                       olduser.email = e.target.value;
-                      olduser.username = e.target.value;
                       setUser(olduser);
                     }}
                     type="text"
