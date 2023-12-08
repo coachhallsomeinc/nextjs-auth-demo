@@ -21,13 +21,10 @@ function about_us() {
             <h5 className="mt-3 px-3" id={styles.textbasefont}>From medication schedules to symptom tracking, TinyTrackers empowers parents to stay organized and informed. Our commitment to the well-being of your family is reflected in features like secure profiles, customizable event tracking, and seamless export functionality for healthcare professionals. Join us in creating a healthier and happier future for your little ones, one well-documented moment at a time.</h5>
             <div className='row'>
               <Image alt="image" className='mt-5' src="/img/Asset-3.svg" width={20} height={30} />
-            {/* <div className='col-6'>
-            <Image alt="image" className='mt-4 px-3' src="/img/Asset-1.svg" width={150} height={40} />
-            </div> */}
             </div>
           </div>
         </div>
-        <div className='col-md-6 justify-content-center'>
+        <div className='col-md-6 d-flex justify-content-center'>
           <Image className='rounded-5 border shadow' src="/img/baby-at-doctor.jpg" alt="baby at doctor" width={500} height={500}/>
         </div>
       </div>

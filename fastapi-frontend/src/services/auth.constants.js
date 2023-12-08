@@ -7,3 +7,4 @@ export const SEND_DATA_ENDPOINT = "data/"
 export const GETUSER_ENDPOINT = "users";
 export const REGISTERNEWCHILD_ENPOINT = 'children/registerchild';
 export const REGISTERNEWCHILDWITHCODE_ENPOINT = 'children/registerchildwithcode';
+export const GETCHILDRENDATAFROMPIVOT_ENDPOINT = 'children/getchildren';

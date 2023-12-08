@@ -4,7 +4,8 @@ import {
     REGISTER_ENDPOINT,
     API_URL,
     REGISTERNEWCHILD_ENPOINT,
-    REGISTERNEWCHILDWITHCODE_ENPOINT
+    REGISTERNEWCHILDWITHCODE_ENPOINT,
+    GETCHILDRENDATAFROMPIVOT_ENDPOINT,
   } from "./auth.constants";
   
   import request from "./api.request";
@@ -46,6 +47,26 @@ import {
                 return response.data;
             } else {
                 console.error('Invalid response:', response);
+                throw new Error('Invalid response from the server');
+            }
+        } catch (error) {
+            console.error('Error registering child:', error);
+            throw error
+        }
+    }
+
+
+    async getChildData(data) {
+        try {
+            const response = await request({
+                url: API_URL + GETCHILDRENDATAFROMPIVOT_ENDPOINT,
+                method: 'GET',
+                headers: data.headers
+            });
+            if (response && response.data) {
+                return response.data;
+            } else {
+                console.error('Invalid response:', response)
                 throw new Error('Invalid response from the server');
             }
         } catch (error) {

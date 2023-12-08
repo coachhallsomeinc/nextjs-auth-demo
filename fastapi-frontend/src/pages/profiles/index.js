@@ -7,12 +7,14 @@ import styles from "@/styles/global.module.css";
 import { useGlobalState } from "@/context/GlobalState";
 import { jwtDecode } from "jwt-decode";
 import GetUserService from "@/services/getuser.service";
+import ChildService from "@/services/childservice";
 import { useRouter } from "next/router";
 
 function ProfilesPage() {
   const { state } = useGlobalState();
   const [user_id, setUserId] = useState();
   const [user, setUserData] = useState(state.user);
+  const [childToRender, setChildToRender] = useState([]);
   const router = useRouter();
 
   useEffect(() => {
@@ -50,6 +52,28 @@ function ProfilesPage() {
         .catch(console.error);
     }
   }, [user_id]);
+
+  const data = {
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "Authorization": "Bearer " + state.user.access_token,
+    }
+  }
+
+  useEffect(async () => {
+    const data = {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Authorization": "Bearer " + state.user.access_token,
+      }
+    }
+    const childData = await ChildService.getChildData(data)
+    console.log(childData)
+    setChildToRender(childData)
+  },[])
+
+
+  // console.log(childData)
 
   return (
     <>
@@ -97,54 +121,42 @@ function ProfilesPage() {
                       </div>
                     </div>
                   </div>
-                  <div className="accordion-item" id={styles.componentcolor}>
+                  {childToRender.map((child) => 
+                  {return (
+                  <div key={child.unique_child_code} className="accordion-item" id={styles.componentcolor}>
                     <h2 className="accordion-header">
                       <button
                         id={styles.componentcolor}
                         className="accordion-button collapsed"
                         type="button"
                         data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseTwo"
+                        data-bs-target={`#panelsStayOpen-collapse${child.unique_child_code}`}
                         aria-expanded="false"
-                        aria-controls="panelsStayOpen-collapseTwo"
-                      >
-                        <div id={styles.textbasefont}>Child 1 Name here</div>
-                      </button>
-                    </h2>
-                    <div
-                      id="panelsStayOpen-collapseTwo"
-                      className="accordion-collapse collapse"
-                    >
-                      <div id={styles.textbasefont} className="accordion-body">
-                        Child 1 profile information here
-                      </div>
-                    </div>
-                  </div>
-                  <div className="accordion-item" id={styles.componentcolor}>
-                    <h2 className="accordion-header">
-                      <button
-                        id={styles.componentcolor}
-                        className="accordion-button collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseThree"
-                        aria-expanded="false"
-                        aria-controls="panelsStayOpen-collapseThree"
+                        aria-controls={`panelsStayOpen-collapse${child.unique_child_code}`}
                       >
                         <div id={styles.textbasefont}>
-                          Child 2 profile (if a child 2 exists)
+                          {child.first_name}
                         </div>
                       </button>
                     </h2>
                     <div
-                      id="panelsStayOpen-collapseThree"
+                      id={`panelsStayOpen-collapse${child.unique_child_code}`}
                       className="accordion-collapse collapse"
                     >
                       <div id={styles.textbasefont} className="accordion-body">
-                        Child 2 profile information here
+                        <ul>
+                          <li>First Name: {child.first_name}</li>
+                          <li>Last Name: {child.last_name}</li>
+                          <li>Unique Child Code: {child.unique_child_code}</li>
+                          <li>Date of Birth: {child.dob}</li>
+                          <li>Allergies: {child.allergies}</li>
+                          <li>Pediatrician Name: {child.pediatrician_name}</li>
+                          <li>Pediatrician Phone Number: {child.pediatrician_number}</li>
+                        </ul>
                       </div>
                     </div>
-                  </div>
+                  </div>)}
+                  )}
                 </div>
               </div>
             </div>

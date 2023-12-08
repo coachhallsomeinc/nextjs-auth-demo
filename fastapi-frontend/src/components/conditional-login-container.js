@@ -66,8 +66,8 @@ const ConditionalLoginContainer = () => {
   // code from justins login screen
 
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("bob@dos.com");
+  const [password, setPassword] = useState("bobiscool");
   //------------------------------------------------------------------------------------------------------------------------------
   const handleLogin = (e) => {
     e.preventDefault();

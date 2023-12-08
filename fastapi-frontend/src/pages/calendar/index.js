@@ -80,7 +80,11 @@ function DailyCalendar() {
           {state.user ? (
             <>
               <div className="row">
-                <p className="mt-5">Hello, {user.username}</p>
+                <div className="col-4"></div>
+                <div className="col-4 mt-5 border rounded-5 shadow text-center" id={styles.componentcolor}>
+                  <h4 className="p-2" id={styles.textbasefont}>Hello, {user.username}</h4>
+                  <p id={styles.textbasefont}>Add a new event to your calendar!</p>
+                </div>
               </div>
             </>
           ) : (
@@ -102,8 +106,8 @@ function DailyCalendar() {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 }
