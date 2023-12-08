@@ -4,6 +4,7 @@ import { useGlobalState } from "@/context/GlobalState";
 import AuthService from "../services/auth.service";
 import styles from "@/styles/global.module.css";
 import Link from "next/link";
+import "bootstrap/dist/css/bootstrap.css";
 
 export default function Navbar() {
   const { state } = useGlobalState();
@@ -53,7 +54,7 @@ export default function Navbar() {
             </div>
             <div id={styles.componentcolor} className="offcanvas-body">
               <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li className="nav-item">
+                <li className="nav-item" data-bs-dismiss="offcanvas">
                   <Link
                     id={styles.textbasefont}
                     style={{ fontSize: "x-large" }}
@@ -64,7 +65,7 @@ export default function Navbar() {
                     About Us
                   </Link>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item" data-bs-dismiss="offcanvas">
                   <Link
                     id={styles.textbasefont}
                     style={{ fontSize: "x-large" }}
@@ -76,7 +77,7 @@ export default function Navbar() {
                 </li>
                 {state.user ? (
                   <>
-                    <li className="nav-item">
+                    <li className="nav-item" data-bs-dismiss="offcanvas">
                       <Link
                         id={styles.textbasefont}
                         style={{ fontSize: "x-large" }}
@@ -87,8 +88,8 @@ export default function Navbar() {
                         Calendar
                       </Link>
                     </li>
-                    <li className="nav-item">
-                      <Link
+                    <li className="nav-item" data-bs-dismiss="offcanvas">
+                      <Link 
                         id={styles.textbasefont}
                         style={{ fontSize: "x-large" }}
                         className="nav-link"
@@ -98,8 +99,8 @@ export default function Navbar() {
                         Profiles
                       </Link>
                     </li>
-                    <li className="nav-item">
-                      <Link
+                    <li className="nav-item" data-bs-dismiss="offcanvas">
+                      <Link 
                         id={styles.textbasefont}
                         style={{ fontSize: "x-large" }}
                         className="nav-link"
@@ -111,7 +112,7 @@ export default function Navbar() {
                     </li>
                   </>
                 ) : (
-                  <li className="nav-item">
+                  <li className="nav-item" data-bs-dismiss="offcanvas">
                     <Link
                       id={styles.textbasefont}
                       style={{ fontSize: "x-large" }}

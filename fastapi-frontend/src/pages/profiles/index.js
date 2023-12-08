@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/Footer";
 import styles from "@/styles/global.module.css";
@@ -50,21 +51,6 @@ function ProfilesPage() {
     }
   }, [user_id]);
 
-  // useEffect(() => {
-  //   // localStorage.getItem("user")
-  //   console.log(state.user)
-  // }, [])
-
-  // console.log(state);
-
-  // if (!state.isAuthenticated) {
-  //   router.push("../")
-  // }
-
-  // useEffect(() => {
-  //   console.log(state)
-  //   }, [user])
-
   return (
     <>
       <div id={styles.page}>
@@ -72,10 +58,17 @@ function ProfilesPage() {
           <div className="row">
             <Navbar />
           </div>
-          <div className="row mt-5">
-            <div className="col">
+          <div className="row">
+            <div className="col-4"></div>
+            <div className="col-4 py-3 mt-5 text-center border rounded-5 shadow" id={styles.componentcolor}>
+              <h3 id={styles.textbasefont}>View your family profiles</h3>
+            </div>
+          </div>
+          <div className="row mt-1">
+            <div className="col-2"></div>
+            <div className="col-8">
               <div>
-                <div className="accordion mt-5 shadow">
+                <div className="accordion mt-5 shadow rounded-5">
                   <div className="accordion-item" id={styles.componentcolor}>
                     <h2 className="accordion-header">
                       <button
@@ -154,6 +147,20 @@ function ProfilesPage() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-4"></div>
+            <div className="col-4 py-3 mt-5 text-center border rounded-5 shadow" id={styles.componentcolor}>
+              <h5 id={styles.textbasefont}>Want to add a new child to your family?</h5>
+              <Link
+                  id={styles.textbasefont}
+                  style={{ fontSize: "large" }}
+                  className="btn btn-lg btn-primary w-30 fs-6"
+                  href="/child-code-register"
+              >
+                  Enter Child ID Code
+              </Link>       
             </div>
           </div>
         </div>

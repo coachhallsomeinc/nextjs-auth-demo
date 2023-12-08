@@ -57,22 +57,7 @@ export default function Home() {
           </div>
       </div>
     </div>
-    {/* <main className={`${styles.main}`}>
-        <div className={styles.grid}>
-          {state.user ? (
-              <li className="nav-item">
-                <Link href="/" className={styles.logout} onClick={handleLogout}>Logout</Link>
-              </li>
-            ) : (
-              <li className="nav-item">
-                <Link href="/login">Login</Link>
-              </li>
-            )}
-        </div>
-      </main> */}
-      <CarouselHomepage />
-      <div className='container mb-5'>
-      </div>
+    <Image src="/img/carousel-1-doctor.jpg" className="d-flex mx-auto rounded-5 my-5 border shadow" height={720} width={720} alt="..." />
     <Footer />
     </div>
   </>

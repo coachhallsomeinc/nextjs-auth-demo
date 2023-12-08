@@ -4,9 +4,7 @@ import styles from '@/styles/global.module.css';
 
 function Footer() {
   return (
-    <>
-    <div className='fixed-bottom'>
-    <footer id={styles.componentcolor} className="mt-5 py-3">
+    <footer id={styles.componentcolor} className="py-3 sticky-bottom">
       <div className="container">
         <div className="row">
           <div className="col-6">
@@ -33,8 +31,6 @@ function Footer() {
         </div>
       </div>
     </footer>
-    </div>
-    </>
   )
 }
 

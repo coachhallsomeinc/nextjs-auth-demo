@@ -84,7 +84,7 @@ const ConditionalLoginContainer = () => {
             });
             // localStorage.setItem("user", JSON.stringify(data));
             console.log("Login success");
-            router.push("/calendar");
+            router.push("/profiles");
           } else {
             console.log("Login failed");
             dispatch({ type: "LOGOUT_USER" });
