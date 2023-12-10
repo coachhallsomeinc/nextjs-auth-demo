@@ -8,11 +8,14 @@ import Footer from "@/components/Footer";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import styles from "@/styles/global.module.css";
 import GetUserService from "@/services/getuser.service";
+import ChildService from "@/services/childservice";
 
 function DailyCalendar() {
   const { state, dispatch } = useGlobalState();
   const [user_id, setUserId] = useState();
   const [user, setUserData] = useState(state.user);
+  const [child, setChild] = useState([]);
+  const [selectedChildFirstName, setSelectedChildFirstName] = useState("")
 
   const localizer = momentLocalizer(moment);
   
@@ -24,6 +27,11 @@ function DailyCalendar() {
   const handleEventTypeClick = (selectedEventType) => {
     setEventType(selectedEventType);
   }
+
+  const handleChildSelect = (selectedChildCode) => {
+    const selectedChild = child.find((child) => child.unique_child_code === selectedChildCode);
+    setSelectedChildFirstName(selectedChild?.first_name || '');
+  };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -61,6 +69,7 @@ function DailyCalendar() {
 
   console.log(medicineFormData)
   console.log(eventType)
+  console.log(events)
 
   const [symptomFormData, setSymptomFormData] = useState({
     symptomType: '',
@@ -72,6 +81,24 @@ function DailyCalendar() {
     otherDescription: '',
   });
 
+  const createEvent = (eventData) => {
+    setEvents((prevEvents) => [
+      ...prevEvents,
+      {
+        start: eventData.start,
+        end: moment(eventData.start).add(1, 'hour').toDate(),
+        type: eventType,
+        childFirstName: selectedChildFirstName,
+      },
+    ]);
+  };
+
+  const MyEvent = ({ event }) => (
+    <div className="d-flex justify-content-center" style={{marginRight:"280px"}}>
+      <h3>{event.childFirstName} - {event.type}</h3>
+    </div>
+  )
+
   const openModal = () => {
     setShowModal(true);
     setSelectedDate();
@@ -79,7 +106,12 @@ function DailyCalendar() {
 
   const submitModal = () => {
     setShowModal(false);
-    setSelectedDate();
+    createEvent({
+      start: selectedDate,
+    });
+    setEventType('');
+    setSelectedDate(null);
+    setSelectedChildFirstName('');
   }
 
   const closeModal = () => {
@@ -108,8 +140,9 @@ function DailyCalendar() {
       default:
         break;
     }
-    setEventType("")
+    setEventType("");
     setSelectedDate();
+    setSelectedChildFirstName('');
   }
 
   const renderForm = () => {
@@ -121,6 +154,25 @@ function DailyCalendar() {
               <div className="col-12 mt-1 border rounded-5 p-3">
               <p>Enter your Medicine event information</p>
               <form>
+                <div className="dropdown d-flex justify-content-center">
+                    <button className="btn btn-primary btn-sm w-30 fs-6 mt-3 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      {selectedChildFirstName ? selectedChildFirstName : 'Select Child'}
+                    </button>
+                    <div className="d-flex flex-column align-items-center justify-content-center">
+                    <ul className="dropdown-menu">
+                      {child.map((chosenchild) => {
+                        return (
+                          <li 
+                            className="d-flex justify-content-center" 
+                            key={chosenchild.unique_child_code} 
+                            onClick={() => handleChildSelect(chosenchild.unique_child_code)}>
+                            <p>{chosenchild.first_name}</p>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                    </div>
+                  </div>
                 <input
                   className="mt-2 bg-light fs-6 form-control form control-lg "
                   placeholder="Enter Dose Given"
@@ -165,6 +217,25 @@ function DailyCalendar() {
               <div className="col-12 mt-1 border rounded-5 p-3">
                 <p>Enter your Symptom event information</p>
                 <form>
+                <div className="dropdown d-flex justify-content-center">
+                    <button className="btn btn-primary btn-sm w-30 fs-6 mt-3 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      {selectedChildFirstName ? selectedChildFirstName : 'Select Child'}
+                    </button>
+                    <div className="d-flex flex-column align-items-center justify-content-center">
+                    <ul className="dropdown-menu">
+                      {child.map((chosenchild) => {
+                        return (
+                          <li 
+                            className="d-flex justify-content-center" 
+                            key={chosenchild.unique_child_code} 
+                            onClick={() => handleChildSelect(chosenchild.unique_child_code)}>
+                            <p>{chosenchild.first_name}</p>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                    </div>
+                  </div>
                   <input
                     className="mt-2 bg-light fs-6 form-control form control-lg "
                     placeholder="Enter Symptom Type"
@@ -201,6 +272,25 @@ function DailyCalendar() {
               <div className="col-12 mt-1 border rounded-5 p-3">
                 <p>Enter your Other event information</p>
                 <form>
+                <div className="dropdown d-flex justify-content-center">
+                    <button className="btn btn-primary btn-sm w-30 fs-6 mt-3 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      {selectedChildFirstName ? selectedChildFirstName : 'Select Child'}
+                    </button>
+                    <div className="d-flex flex-column align-items-center justify-content-center">
+                    <ul className="dropdown-menu">
+                      {child.map((chosenchild) => {
+                        return (
+                          <li 
+                            className="d-flex justify-content-center" 
+                            key={chosenchild.unique_child_code} 
+                            onClick={() => handleChildSelect(chosenchild.unique_child_code)}>
+                            <p>{chosenchild.first_name}</p>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                    </div>
+                  </div>
                   <input
                     className="mt-2 bg-light fs-6 form-control form control-lg "
                     placeholder="Enter Description"
@@ -218,21 +308,7 @@ function DailyCalendar() {
         return null;
     }
   };
-  
-  // const calculateDropdownHeight = () => {
-  //   const dropdownItemHeight = 40; // Adjust this based on your styles
-  //   const numberOfItems = 3; // Adjust this based on the actual number of items
-  //   return dropdownItemHeight * numberOfItems;
-  // };
-  
 
-  
-
-  
-
-  // useEffect(() => {
-  //   console.log(state.user)
-  // },[])
 
   // called when loaded, checks to see if we have a user
   useEffect(() => {
@@ -272,6 +348,27 @@ function DailyCalendar() {
     }
   }, [user_id]);
 
+  const data = {
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      Authorization: "Bearer " + state.user.access_token,
+    },
+  };
+
+  useEffect(() => {
+    const data = {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: "Bearer " + state.user.access_token,
+      },
+    };
+    ChildService.getChildData(data).then((result) => {
+      setChild(result);
+    });
+  }, []);
+
+  console.log(child)
+
  
   return (
     <>
@@ -309,6 +406,10 @@ function DailyCalendar() {
                   popup
                   onSelectSlot= {(slotInfo) => {
                   openModal(slotInfo);
+                  setSelectedDate(slotInfo.start)
+                  }}
+                  components={{
+                    event: MyEvent,
                   }}
                 />
                 {showModal && (
