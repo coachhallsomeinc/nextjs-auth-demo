@@ -1,6 +1,5 @@
 import { React, useCallback, useEffect, useState, useMemo } from "react";
 import { useGlobalState } from "@/context/GlobalState";
-import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button} from "@nextui-org/react";
 import { Calendar, Views, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import Navbar from "@/components/navbar";
