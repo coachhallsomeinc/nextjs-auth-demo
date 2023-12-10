@@ -23,9 +23,62 @@ function DailyCalendar() {
   const [eventType, setEventType] = useState("");
   const [selectedDate, setSelectedDate] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState()
+  const [showEventDetailsModal, setShowEventDetailsModal] = useState(false);
 
   const handleEventTypeClick = (selectedEventType) => {
     setEventType(selectedEventType);
+  }
+
+  const handleEventClick = (event) => {
+    setShowEventDetailsModal(true);
+    setSelectedEvent(event)
+  }
+
+  const renderEventDetails = (event) => {
+    switch (event.type) {
+      case 'Medicine':
+        return (
+          <div className="col-12 mt-1 border rounded-5 p-3">
+            <p>Child Name: {event.childFirstName}</p>
+            <p>Medicine given: {medicineFormData.medicineType}</p>
+            <p>Dose given: {medicineFormData.dose}</p>
+            <p>Time until next dose: {medicineFormData.timeToNextDose}</p>
+            <p>Description: {medicineFormData.medicineDescription}</p>
+            <div className="d-flex justify-content-center">
+              <button className="btn btn-lg btn-primary w-30 fs-6 mt-3" onClick={closeEventDetailsModal}>Close</button>
+            </div>
+          </div>
+        );
+      case 'Symptom':
+        return (
+          <div className="col-12 mt-1 border rounded-5 p-3">
+            <p>Child Name: {event.childFirstName}</p>
+            <p>Symptom: {symptomFormData.symptomType}</p>
+            <p>Severity: {symptomFormData.symptomSeverity}</p>
+            <p>Description: {symptomFormData.symptomDescription}</p>
+            <div className="d-flex justify-content-center">
+              <button className="btn btn-lg btn-primary w-30 fs-6 mt-3" onClick={closeEventDetailsModal}>Close</button>
+            </div>
+          </div>
+        );
+      case 'Other':
+        return (
+          <div className="col-12 mt-1 border rounded-5 p-3">
+            <p>Child Name: {event.childFirstName}</p>
+            <p>Description: {otherFormData.otherDescription}</p>
+            <div className="d-flex justify-content-center">
+              <button className="btn btn-lg btn-primary w-30 fs-6 mt-3" onClick={closeEventDetailsModal}>Close</button>
+            </div>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
+  const closeEventDetailsModal = () => {
+    setShowEventDetailsModal(false);
   }
 
   const handleChildSelect = (selectedChildCode) => {
@@ -408,6 +461,7 @@ function DailyCalendar() {
                   openModal(slotInfo);
                   setSelectedDate(slotInfo.start)
                   }}
+                  onSelectEvent={(event) => handleEventClick(event)}
                   components={{
                     event: MyEvent,
                   }}
@@ -450,6 +504,21 @@ function DailyCalendar() {
                     </div>
                   </div>
                 </div>
+                )}
+                {showEventDetailsModal && (
+                  <div
+                  style={{
+                    position: "fixed",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    backgroundColor: "white",
+                    zIndex: "999",
+                    padding: "20px",
+                    boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+                  }}>
+                    {renderEventDetails(selectedEvent)}
+                  </div>
                 )}
               </div>
             </div>
