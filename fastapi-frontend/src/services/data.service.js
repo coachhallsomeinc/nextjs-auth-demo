@@ -50,5 +50,5 @@ import {
   
     
   }
-  
+
   export default new DataService();
