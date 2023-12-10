@@ -30,7 +30,7 @@ function ChildCodeRegister() {
       const response = await ChildService.registerChildWithCode(data);
       console.log("Child registration with code response:", response);
       if (response) {
-        router.push("/calendar");
+        router.push("/profiles");
       }
     } catch (error) {
       console.error("Error during child code registration:", error.message);

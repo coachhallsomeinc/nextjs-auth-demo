@@ -49,7 +49,7 @@ const ChildRegisterForm = () => {
       // const response = await ChildService.registerChild(accessToken, childData);
       console.log("Child registration response:", response);
       if (response){
-        router.push("/calendar")
+        router.push("/profiles")
       }
     } catch (error) {
       console.error("Error during child registration:", error.message);
