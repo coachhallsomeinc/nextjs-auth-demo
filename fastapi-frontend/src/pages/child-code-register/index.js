@@ -17,16 +17,16 @@ function ChildCodeRegister() {
 
   const handleChildRegistrationWithCode = async () => {
     try {
-      console.log("starting handchildregistrationwithcode")
-      console.log(child)
+      console.log("starting handchildregistrationwithcode");
+      console.log(child);
       const data = {
-        data: {"unique_child_code": child},
+        data: { unique_child_code: child },
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
-          "Authorization": "Bearer " + state.user.access_token,
+          Authorization: "Bearer " + state.user?.access_token,
         },
       };
-      console.log(data.data)
+      console.log(data.data);
       const response = await ChildService.registerChildWithCode(data);
       console.log("Child registration with code response:", response);
       if (response) {

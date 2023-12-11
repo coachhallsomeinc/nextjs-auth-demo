@@ -41,7 +41,7 @@ function ProfilesPage() {
         console.log(state);
         let response = await GetUserService.getUserData(
           user_id,
-          state.user.access_token
+          state.user?.access_token
         );
         console.log(response);
         setUserData(response.data);
@@ -56,7 +56,7 @@ function ProfilesPage() {
   const data = {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
-      Authorization: "Bearer " + state.user.access_token,
+      Authorization: "Bearer " + state.user?.access_token,
     },
   };
 
@@ -64,7 +64,7 @@ function ProfilesPage() {
     const data = {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: "Bearer " + state.user.access_token,
+        Authorization: "Bearer " + state.user?.access_token,
       },
     };
     ChildService.getChildData(data).then((result) => {

@@ -26,36 +26,37 @@ const ChildRegisterForm = () => {
       // console.log(accessToken);
 
       const childData = {
-        child_first_name: child?.firstName || "str", 
+        child_first_name: child?.firstName || "str",
         child_last_name: child?.lastName || "str",
         child_dob: child?.dob || "str",
         child_allergies: child?.allergies || "str",
         child_pediatrician_name: child?.pediatricianName || "str",
-        child_pediatrician_phone_number: child?.pediatricianPhoneNumber || "str",
+        child_pediatrician_phone_number:
+          child?.pediatricianPhoneNumber || "str",
       };
 
       const data = {
         data: childData,
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
-          "Authorization":"Bearer " + state.user.access_token
-        }
-      }
+          Authorization: "Bearer " + state.user?.access_token,
+        },
+      };
 
-      console.log(state)
-      console.log(data)
+      console.log(state);
+      console.log(data);
 
       const response = await ChildService.registerChild(data);
       // const response = await ChildService.registerChild(accessToken, childData);
       console.log("Child registration response:", response);
-      if (response){
-        router.push("/profiles")
+      if (response) {
+        router.push("/profiles");
       }
     } catch (error) {
       console.error("Error during child registration:", error.message);
     }
   };
-  
+
   return (
     <>
       <div id={styles.page}>
