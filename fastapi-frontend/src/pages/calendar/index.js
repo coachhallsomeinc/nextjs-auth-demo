@@ -487,7 +487,7 @@ function DailyCalendar() {
                   id={styles.componentcolor}
                 >
                   <h4 className="p-2" id={styles.textbasefont}>
-                    Hello, {user.username}
+                    Hello, {user?.username}
                   </h4>
                   <p id={styles.textbasefont}>
                     Add a new event to your family calendar!

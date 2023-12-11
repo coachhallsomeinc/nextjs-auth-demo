@@ -125,7 +125,7 @@ function ProfilesPage() {
                         aria-expanded="true"
                         aria-controls="panelsStayOpen-collapseOne"
                       >
-                        <div id={styles.textbasefont}>{user.username}</div>
+                        <div id={styles.textbasefont}>{user?.username}</div>
                       </button>
                     </h2>
                     <div
@@ -135,8 +135,8 @@ function ProfilesPage() {
                       <div className="accordion-body">
                         <div id={styles.textbasefont}>
                           <ul>
-                            <li>Username: {user.username}</li>
-                            <li>Email Address: {user.email}</li>
+                            <li>Username: {user?.username}</li>
+                            <li>Email Address: {user?.email}</li>
                           </ul>
                         </div>
                       </div>

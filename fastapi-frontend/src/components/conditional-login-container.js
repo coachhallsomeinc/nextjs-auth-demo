@@ -264,7 +264,7 @@ const ConditionalLoginContainer = () => {
                     required
                     onChange={(e) => {
                       let olduser = user;
-                      olduser.username = e.target.value;
+                      olduser?.username = e.target.value;
                       setUser(olduser);
                     }}
                     type="text"
