@@ -51,7 +51,7 @@ function ChildCodeRegister() {
               id={styles.componentcolor}
               className="col-md-6 border rounded-5 shadow text-center p-3"
             >
-              <p>Please enter your child's Child ID Code</p>
+              <p>Please enter your child&apos;s Child ID Code</p>
               <input
                 required
                 type="text"

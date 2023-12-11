@@ -26,9 +26,9 @@ const ConditionalLoginContainer = () => {
     setView("signup");
   };
 
-  const showForgotPassword = () => {
-    setView("forgotPassword");
-  };
+  // const showForgotPassword = () => {
+  //   setView("forgotPassword");
+  // };
 
   const { state, dispatch } = useGlobalState();
 
@@ -54,7 +54,7 @@ const ConditionalLoginContainer = () => {
       }
     };
     getUserFromLocalStorage();
-  }, []);
+  }, [dispatch]);
 
   const handleLogout = () => {
     AuthService.logout();
@@ -66,8 +66,8 @@ const ConditionalLoginContainer = () => {
   // code from justins login screen
 
   const router = useRouter();
-  const [email, setEmail] = useState("bob@dos.com");
-  const [password, setPassword] = useState("bobiscool");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   //------------------------------------------------------------------------------------------------------------------------------
   const handleLogin = (e) => {
     e.preventDefault();
@@ -158,7 +158,7 @@ const ConditionalLoginContainer = () => {
                   </p>
                 )}
                 {view === "signup" && <></>}
-                {view === "forgotPassword" && <></>}
+                {/* {view === "forgotPassword" && <></>} */}
                 {view === "login" && (
                   <p
                     id={styles.textbasefont}
@@ -177,7 +177,7 @@ const ConditionalLoginContainer = () => {
                     Create a New Account
                   </p>
                 )}
-                {view === "forgotPassword" && (
+                {/* {view === "forgotPassword" && (
                   <p
                     id={styles.textbasefont}
                     style={{ fontSize: "large" }}
@@ -185,7 +185,7 @@ const ConditionalLoginContainer = () => {
                   >
                     Forgot Password?
                   </p>
-                )}
+                )}  */}
               </div>
             </div>
           </div>
@@ -219,7 +219,7 @@ const ConditionalLoginContainer = () => {
                 </div>
               </form>
               <div className="input-group mb-3 d-flex justify-content-between">
-                <div className="forgot mt-2 fs-6">
+                {/* <div className="forgot mt-2 fs-6">
                   <Link
                     id={styles.textbasefont}
                     style={{ fontSize: "large" }}
@@ -228,7 +228,7 @@ const ConditionalLoginContainer = () => {
                   >
                     Forgot Password?
                   </Link>
-                </div>
+                </div> */}
                 {/* login logout button */}
                 <div className="login-button">
                   {state.user ? (
@@ -331,7 +331,7 @@ const ConditionalLoginContainer = () => {
               </form>
             </>
           )}
-          {view === "forgotPassword" && (
+          {/* {view === "forgotPassword" && (
             <div className="mb-3">
               <p id={styles.textbasefont} style={{ fontSize: "large" }}>
                 Security question 1
@@ -361,7 +361,7 @@ const ConditionalLoginContainer = () => {
                 Submit
               </button>
             </div>
-          )}
+          )} */}
           <div className="row mb-3">
             <small id={styles.textbasefont}>
               {view === "login"
