@@ -5,7 +5,7 @@ import styles from '@/styles/global.module.css';
 
 function Footer() {
   return (
-    <footer id={styles.componentcolor} className="py-3 sticky-bottom">
+    <footer id={styles.componentcolor} className="py-3 fixed-bottom">
       <div className="container">
         <div className="row">
           <div className="col-6">
