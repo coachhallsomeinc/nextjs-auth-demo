@@ -3,6 +3,7 @@ import { createContext, useReducer, useContext } from "react";
 const initialState = {
   user: null,
   isAuthenticated: false,
+  isError: false,
 };
 // Create a context object
 const GlobalStateContext = createContext();
@@ -10,6 +11,10 @@ function reducer(state, action) {
   switch (action.type) {
     case "SET_USER":
       return { ...state, user: action.payload, isAuthenticated: true };
+    case "LOGIN_FAILED":
+      console.log(action.payload.data.detail, "in failed dispatch")
+      const userUpdate = {...state.user, isError: action.payload.data.detail}
+      return {...state, user: userUpdate, isAuthenticated: false};
     case "LOGOUT_USER":
       return { ...state, user: null, isAuthenticated: false };
     default:

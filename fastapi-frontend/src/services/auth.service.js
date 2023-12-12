@@ -28,7 +28,8 @@ import {
           return this.setToken(response);
         }
       } catch (error) {
-        return error.response;
+        console.log(error);
+        return error;
       }
     }
   

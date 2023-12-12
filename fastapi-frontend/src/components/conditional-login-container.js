@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import { useGlobalState } from "../context/GlobalState";
 import { useRouter } from "next/navigation";
 import AuthService from "../services/auth.service";
@@ -71,6 +71,7 @@ const ConditionalLoginContainer = () => {
   //------------------------------------------------------------------------------------------------------------------------------
   const handleLogin = (e) => {
     e.preventDefault();
+    console.log(state)
     // const username = email;
     AuthService.login(email, password)
       .then(async (resp) => {
@@ -86,8 +87,11 @@ const ConditionalLoginContainer = () => {
             console.log("Login success");
             router.push("/profiles");
           } else {
-            console.log("Login failed");
-            dispatch({ type: "LOGOUT_USER" });
+            console.log("Login failed " + resp.data.detail);
+            await dispatch({ 
+              type: "LOGIN_FAILED", 
+              payload: resp,
+            });
           }
         }
       })
@@ -250,9 +254,10 @@ const ConditionalLoginContainer = () => {
                       onClick={handleLogin}
                     >
                       Log In
-                    </button>
+                    </button> 
                   )}
                 </div>
+                <span className="text-danger">{state?.user?.isError}</span>
               </div>
             </>
           )}
@@ -324,10 +329,13 @@ const ConditionalLoginContainer = () => {
                     style={{ fontSize: "large" }}
                     className="mt-2 btn btn-lg btn-primary w-30 fs-6"
                     onClick={handleRegister}
+                    // {(user.password !== user.passwordConf) && disabled}
+                    disabled={user.password !== user.passwordConf}
                   >
                     Sign Up
                   </button>
                 </div>
+                <span className="text-danger">{user.password !== user.passwordConf && "Password's do not match"}</span>
               </form>
             </>
           )}
