@@ -85,34 +85,13 @@ function ProfilesPage() {
           <div className="row mt-1">
             <div className="col-2"></div>
             <div className="col-8">
+              <div className="text-center">
               <h1 className="mt-5" id={styles.textbasefont}>
                 Family Profiles
               </h1>
-              <div
-                className="col py-3 mt-5 text-center border rounded-5 shadow"
-                id={styles.componentcolor}
-              >
-                <h5 id={styles.textbasefont}>
-                  Want to add a new child to your family?
-                </h5>
-                <Link
-                  id={styles.textbasefont}
-                  style={{ fontSize: "large" }}
-                  className="btn btn-lg btn-primary w-30 fs-6"
-                  href="/child-code-register"
-                >
-                  Enter Child ID Code
-                </Link>
-                <Link
-                  id={styles.textbasefont}
-                  style={{ fontSize: "large" }}
-                  className="mx-3 btn btn-lg btn-primary w-30 fs-6"
-                  href="/child-register-form"
-                >
-                  Register new Child
-                </Link>
               </div>
               <div>
+                <div className="accordion-container">
                 <div className="accordion mt-5 shadow rounded-5">
                   <div className="accordion-item" id={styles.componentcolor}>
                     <h2 className="accordion-header">
@@ -194,6 +173,34 @@ function ProfilesPage() {
                     );
                   })}
                 </div>
+                </div>
+              </div>
+              <div className="row">
+              <div className="col-3"></div>
+              <div
+                className="col-6 py-3 mt-5 text-center border rounded-5 shadow"
+                id={styles.componentcolor}
+              >
+                <h5 id={styles.textbasefont}>
+                  Want to add a new child to your family?
+                </h5>
+                <Link
+                  id={styles.textbasefont}
+                  style={{ fontSize: "large" }}
+                  className="btn btn-lg btn-primary w-30 fs-6"
+                  href="/child-code-register"
+                >
+                  Enter Child ID Code
+                </Link>
+                <Link
+                  id={styles.textbasefont}
+                  style={{ fontSize: "large" }}
+                  className="mx-3 btn btn-lg btn-primary w-30 fs-6"
+                  href="/child-register-form"
+                >
+                  Register new Child
+                </Link>
+              </div>
               </div>
             </div>
           </div>

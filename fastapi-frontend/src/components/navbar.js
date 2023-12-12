@@ -7,7 +7,7 @@ import Link from "next/link";
 import "bootstrap/dist/css/bootstrap.css";
 
 export default function Navbar() {
-  const { state } = useGlobalState();
+  const { state, dispatch } = useGlobalState();
 
   const handleLogout = () => {
     AuthService.logout();
