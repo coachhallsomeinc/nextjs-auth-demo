@@ -208,8 +208,8 @@ function ProfilesPage() {
             <div className="col-4"></div>
           </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 }

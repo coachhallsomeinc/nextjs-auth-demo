@@ -5,9 +5,11 @@ import AuthService from "../services/auth.service";
 import styles from "@/styles/global.module.css";
 import Link from "next/link";
 import "bootstrap/dist/css/bootstrap.css";
+import { useRouter } from "next/router";
 
 export default function Navbar() {
   const { state, dispatch } = useGlobalState();
+  const router = useRouter()
 
   const handleLogout = () => {
     AuthService.logout();
